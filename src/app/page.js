@@ -13,18 +13,15 @@ export default function Home() {
               alt="Condomínio Dona Mirai Logo" 
               width={200}
               height={80}
-              className="h-20 w-auto object-contai bg-[#3b4010]"
+              className="h-40 w-auto object-contai bg-[#3b4010] py-1"
             />
           </div>
-          <p className="text-lg text-gray-600 dark:text-[#3b4010]-300">
-            Incentivo à Participação na Votação
-          </p>
         </div>
 
         {/* Main Content */}
         <div className="bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm rounded-2xl shadow-2xl p-8 md:p-12 border border-white/20 dark:border-gray-700/20">
           
-          <h3 className="text-2xl text-center font-bold text-gray-800 dark:text-white mb-6">Regulamento da Campanha</h3>
+          <h3 className="text-2xl text-center font-bold text-gray-800 dark:text-white mb-8">Regulamento do Incentivo à Participação na Votação</h3>
 
           {/* Section 1 - Objetivo */}
           <section className="mb-10">
@@ -34,7 +31,7 @@ export default function Home() {
               </div>
               <h3 className="text-2xl font-bold text-gray-800 dark:text-white">Objetivo</h3>
             </div>
-            <div className="pl-16">
+            <div className="pl-4 lg:pl-16">
               <p className="text-gray-700 dark:text-gray-300 leading-relaxed mb-4">
                 A campanha tem como finalidade incentivar a participação dos condôminos na votação referente ao deslocamento da porta da varanda.
               </p>
@@ -52,7 +49,7 @@ export default function Home() {
               </div>
               <h3 className="text-2xl font-bold text-gray-800 dark:text-white">Premiação</h3>
             </div>
-            <div className="pl-16">
+            <div className="pl-4 lg:pl-16">
               <p className="text-gray-700 dark:text-gray-300 leading-relaxed mb-6">
                 O total da premiação é de <span className="font-bold text-green-600 dark:text-green-400 text-xl">R$ 750,00</span> (setecentos e cinquenta reais), distribuídos da seguinte forma:
               </p>
@@ -94,10 +91,10 @@ export default function Home() {
               </div>
               <h3 className="text-2xl font-bold text-gray-800 dark:text-white">Como participar</h3>
             </div>
-            <div className="pl-16">
+            <div className="pl-4 lg:pl-16">
               <div className="space-y-4">
                 <div className="flex items-center">
-                  <div className="w-6 h-6 bg-purple-500 rounded-full flex items-center justify-center text-white text-sm font-bold mr-3 mt-1 flex-shrink-0">
+                  <div className="self-start w-6 h-6 bg-purple-500 rounded-full flex items-center justify-center text-white text-sm font-bold mr-3 mt-1 flex-shrink-0">
                     1
                   </div>
                   <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
@@ -127,7 +124,7 @@ export default function Home() {
                   </Link>
                 </div>
                 <div className="flex items-center">
-                  <div className="w-6 h-6 bg-purple-500 rounded-full flex items-center justify-center text-white text-sm font-bold mr-3 mt-1 flex-shrink-0">
+                  <div className="self-start w-6 h-6 bg-purple-500 rounded-full flex items-center justify-center text-white text-sm font-bold mr-3 mt-1 flex-shrink-0">
                     2
                   </div>
                   <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
@@ -143,7 +140,7 @@ export default function Home() {
                   </p>
                 </div>
                 <div className="flex items-center">
-                  <div className="w-6 h-6 bg-purple-500 rounded-full flex items-center justify-center text-white text-sm font-bold mr-3 mt-1 flex-shrink-0">
+                  <div className="self-start w-6 h-6 bg-purple-500 rounded-full flex items-center justify-center text-white text-sm font-bold mr-3 mt-1 flex-shrink-0">
                     3
                   </div>
                   <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
@@ -162,7 +159,7 @@ export default function Home() {
               </div>
               <h3 className="text-2xl font-bold text-gray-800 dark:text-white">Indicações (Referrals)</h3>
             </div>
-            <div className="pl-16 space-y-4">
+            <div className="pl-4 lg:pl-16 space-y-4">
               <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
                 O condômino poderá compartilhar seu código exclusivo com outros condôminos, incentivando-os a votar.
               </p>
@@ -185,7 +182,7 @@ export default function Home() {
               </div>
               <h3 className="text-2xl font-bold text-gray-800 dark:text-white">Sorteio</h3>
             </div>
-            <div className="pl-16 space-y-4">
+            <div className="pl-4 lg:pl-16 space-y-4">
               <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
                 Além do prêmio de indicações, todos os condôminos que enviarem o screenshot conforme descrito no item 3 participarão automaticamente de um sorteio.
               </p>
@@ -208,7 +205,7 @@ export default function Home() {
               </div>
               <h3 className="text-2xl font-bold text-gray-800 dark:text-white">Prazo da campanha</h3>
             </div>
-            <div className="pl-16 space-y-4">
+            <div className="pl-4 lg:pl-16 space-y-4">
               <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
                 A campanha será válida até a conclusão da votação sobre a proposta (aprovação ou rejeição).
               </p>
@@ -228,7 +225,7 @@ export default function Home() {
               </div>
               <h3 className="text-2xl font-bold text-gray-800 dark:text-white">Pagamento</h3>
             </div>
-            <div className="pl-16 space-y-4">
+            <div className="pl-4 lg:pl-16 space-y-4">
               <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
                 Os prêmios serão pagos exclusivamente via <span className="font-semibold text-emerald-600 dark:text-emerald-400">PIX</span>.
               </p>
@@ -246,7 +243,7 @@ export default function Home() {
               </div>
               <h3 className="text-2xl font-bold text-gray-800 dark:text-white">Disposições finais</h3>
             </div>
-            <div className="pl-16 space-y-4">
+            <div className="pl-4 lg:pl-16 space-y-4">
               <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
                 A participação na campanha implica aceitação integral deste regulamento.
               </p>
