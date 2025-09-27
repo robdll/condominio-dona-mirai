@@ -2,21 +2,75 @@
 
 import Link from 'next/link';
 import Image from 'next/image';
+import { useState, useEffect } from 'react';
 
 export default function Participantes() {
-  // Sample data - in a real app, this would come from an API or database
-  const participantes = [
-    { apartamento: '101', bloco: 'A', indicacoes: 5, codigoReferencia: '101-A' },
-    { apartamento: '102', bloco: 'A', indicacoes: 3, codigoReferencia: '102-A' },
-    { apartamento: '201', bloco: 'A', indicacoes: 7, codigoReferencia: '201-A' },
-    { apartamento: '301', bloco: 'A', indicacoes: 2, codigoReferencia: '301-A' },
-    { apartamento: '101', bloco: 'B', indicacoes: 4, codigoReferencia: '101-B' },
-    { apartamento: '102', bloco: 'B', indicacoes: 6, codigoReferencia: '102-B' },
-    { apartamento: '201', bloco: 'B', indicacoes: 1, codigoReferencia: '201-B' },
-    { apartamento: '301', bloco: 'B', indicacoes: 8, codigoReferencia: '301-B' },
-    { apartamento: '101', bloco: 'C', indicacoes: 3, codigoReferencia: '101-C' },
-    { apartamento: '102', bloco: 'C', indicacoes: 5, codigoReferencia: '102-C' },
-  ];
+  const [participantes, setParticipantes] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    const fetchResidents = async () => {
+      try {
+        setLoading(true);
+        const response = await fetch('/api/residents');
+        const result = await response.json();
+        
+        if (result.success) {
+          setParticipantes(result.data);
+        } else {
+          setError(result.message || 'Failed to fetch residents data');
+        }
+      } catch (err) {
+        setError('Network error: ' + err.message);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchResidents();
+  }, []);
+
+  // Show loading state
+  if (loading) {
+    return (
+      <div className="min-h-screen bg-gradient-radial from-blue-50 via-indigo-50 to-purple-50 dark:from-gray-900 dark:via-blue-900 dark:to-purple-900 flex items-center justify-center">
+        <div className="text-center">
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto mb-4"></div>
+          <p className="text-gray-600 dark:text-gray-400">Carregando dados dos participantes...</p>
+        </div>
+      </div>
+    );
+  }
+
+  // Show error state
+  if (error) {
+    return (
+      <div className="min-h-screen bg-gradient-radial from-blue-50 via-indigo-50 to-purple-50 dark:from-gray-900 dark:via-blue-900 dark:to-purple-900 flex items-center justify-center">
+        <div className="text-center max-w-md mx-auto p-6">
+          <div className="bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-lg p-6">
+            <div className="text-red-600 dark:text-red-400 mb-4">
+              <svg className="w-12 h-12 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L3.732 16.5c-.77.833.192 2.5 1.732 2.5z" />
+              </svg>
+            </div>
+            <h3 className="text-lg font-semibold text-red-800 dark:text-red-200 mb-2">
+              Erro ao carregar dados
+            </h3>
+            <p className="text-red-700 dark:text-red-300 mb-4">
+              {error}
+            </p>
+            <button 
+              onClick={() => window.location.reload()}
+              className="px-4 py-2 bg-red-600 hover:bg-red-700 text-white rounded-lg transition-colors"
+            >
+              Tentar novamente
+            </button>
+          </div>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen bg-gradient-radial from-blue-50 via-indigo-50 to-purple-50 dark:from-gray-900 dark:via-blue-900 dark:to-purple-900">
@@ -93,7 +147,10 @@ export default function Participantes() {
                 <div className="ml-4">
                   <p className="text-sm font-medium text-gray-600 dark:text-gray-400">Líder em Indicações</p>
                   <p className="text-lg font-bold text-purple-600 dark:text-purple-400">
-                    {participantes.reduce((max, p) => p.indicacoes > max.indicacoes ? p : max, participantes[0])?.apartamento}-{participantes.reduce((max, p) => p.indicacoes > max.indicacoes ? p : max, participantes[0])?.bloco}
+                    {participantes.length > 0 
+                      ? `${participantes.reduce((max, p) => p.indicacoes > max.indicacoes ? p : max, participantes[0])?.apartamento}-${participantes.reduce((max, p) => p.indicacoes > max.indicacoes ? p : max, participantes[0])?.bloco}`
+                      : 'N/A'
+                    }
                   </p>
                 </div>
               </div>
@@ -102,89 +159,105 @@ export default function Participantes() {
 
           {/* Table */}
           <div className="overflow-x-auto">
-            <table className="w-full bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden">
-              <thead className="bg-gradient-to-r from-gray-50 to-gray-100 dark:from-gray-700 dark:to-gray-600">
-                <tr>
-                  <th className="px-6 py-4 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
-                    Apartamento
-                  </th>
-                  <th className="px-6 py-4 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
-                    Bloco
-                  </th>
-                  <th className="px-6 py-4 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
-                    Indicações
-                  </th>
-                  <th className="px-6 py-4 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
-                    Código de Referência
-                  </th>
-                </tr>
-              </thead>
-              <tbody className="divide-y divide-gray-200 dark:divide-gray-700">
-                {participantes
-                  .sort((a, b) => b.indicacoes - a.indicacoes) // Sort by referrals descending
-                  .map((participante, index) => (
-                    <tr 
-                      key={`${participante.apartamento}-${participante.bloco}`}
-                      className={`hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors ${
-                        index === 0 ? 'bg-gradient-to-r from-yellow-50 to-yellow-100 dark:from-yellow-900/20 dark:to-yellow-800/20' : ''
-                      }`}
-                    >
-                      <td className="px-6 py-4 whitespace-nowrap">
-                        <div className="flex items-center">
-                          {index === 0 && (
-                            <div className="flex-shrink-0 mr-3">
-                              <div className="w-6 h-6 bg-yellow-500 rounded-full flex items-center justify-center">
-                                <svg className="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20">
-                                  <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                                </svg>
+            {participantes.length === 0 ? (
+              <div className="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-12 text-center">
+                <div className="text-gray-400 dark:text-gray-500 mb-4">
+                  <svg className="w-16 h-16 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+                  </svg>
+                </div>
+                <h3 className="text-lg font-semibold text-gray-700 dark:text-gray-300 mb-2">
+                  Nenhum participante encontrado
+                </h3>
+                <p className="text-gray-500 dark:text-gray-400">
+                  Ainda não há participantes cadastrados na campanha.
+                </p>
+              </div>
+            ) : (
+              <table className="w-full bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden">
+                <thead className="bg-gradient-to-r from-gray-50 to-gray-100 dark:from-gray-700 dark:to-gray-600">
+                  <tr>
+                    <th className="px-6 py-4 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
+                      Apartamento
+                    </th>
+                    <th className="px-6 py-4 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
+                      Bloco
+                    </th>
+                    <th className="px-6 py-4 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
+                      Indicações
+                    </th>
+                    <th className="px-6 py-4 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
+                      Código de Referência
+                    </th>
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-gray-200 dark:divide-gray-700">
+                  {participantes
+                    .sort((a, b) => b.indicacoes - a.indicacoes) // Sort by referrals descending
+                    .map((participante, index) => (
+                      <tr 
+                        key={`${participante.apartamento}-${participante.bloco}`}
+                        className={`hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors ${
+                          index === 0 ? 'bg-gradient-to-r from-yellow-50 to-yellow-100 dark:from-yellow-900/20 dark:to-yellow-800/20' : ''
+                        }`}
+                      >
+                        <td className="px-6 py-4 whitespace-nowrap">
+                          <div className="flex items-center">
+                            {index === 0 && (
+                              <div className="flex-shrink-0 mr-3">
+                                <div className="w-6 h-6 bg-yellow-500 rounded-full flex items-center justify-center">
+                                  <svg className="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20">
+                                    <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                                  </svg>
+                                </div>
                               </div>
+                            )}
+                            <div className="text-sm font-medium text-gray-900 dark:text-white">
+                              {participante.apartamento}
                             </div>
-                          )}
-                          <div className="text-sm font-medium text-gray-900 dark:text-white">
-                            {participante.apartamento}
                           </div>
-                        </div>
-                      </td>
-                      <td className="px-6 py-4 whitespace-nowrap">
-                        <div className="text-sm text-gray-900 dark:text-white">
-                          {participante.bloco}
-                        </div>
-                      </td>
-                      <td className="px-6 py-4 whitespace-nowrap">
-                        <div className="flex items-center">
-                          <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${
-                            participante.indicacoes >= 7 
-                              ? 'bg-green-100 text-green-800 dark:bg-green-900/20 dark:text-green-400'
-                              : participante.indicacoes >= 4
-                              ? 'bg-blue-100 text-blue-800 dark:bg-blue-900/20 dark:text-blue-400'
-                              : participante.indicacoes >= 2
-                              ? 'bg-yellow-100 text-yellow-800 dark:bg-yellow-900/20 dark:text-yellow-400'
-                              : 'bg-gray-100 text-gray-800 dark:bg-gray-900/20 dark:text-gray-400'
-                          }`}>
-                            {participante.indicacoes}
-                          </span>
-                        </div>
-                      </td>
-                      <td className="px-6 py-4 whitespace-nowrap">
-                        <div className="flex items-center">
-                          <code className="text-sm bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-gray-200 px-2 py-1 rounded font-mono">
-                            {participante.codigoReferencia}
-                          </code>
-                          <button 
-                            onClick={() => navigator.clipboard.writeText(participante.codigoReferencia)}
-                            className="ml-2 p-1 text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 transition-colors"
-                            title="Copiar código"
-                          >
-                            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
-                            </svg>
-                          </button>
-                        </div>
-                      </td>
-                    </tr>
-                  ))}
-              </tbody>
-            </table>
+                        </td>
+                        <td className="px-6 py-4 whitespace-nowrap">
+                          <div className="text-sm text-gray-900 dark:text-white">
+                            {participante.bloco}
+                          </div>
+                        </td>
+                        <td className="px-6 py-4 whitespace-nowrap">
+                          <div className="flex items-center">
+                            <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${
+                              participante.indicacoes >= 7 
+                                ? 'bg-green-100 text-green-800 dark:bg-green-900/20 dark:text-green-400'
+                                : participante.indicacoes >= 4
+                                ? 'bg-blue-100 text-blue-800 dark:bg-blue-900/20 dark:text-blue-400'
+                                : participante.indicacoes >= 2
+                                ? 'bg-yellow-100 text-yellow-800 dark:bg-yellow-900/20 dark:text-yellow-400'
+                                : 'bg-gray-100 text-gray-800 dark:bg-gray-900/20 dark:text-gray-400'
+                            }`}>
+                              {participante.indicacoes}
+                            </span>
+                          </div>
+                        </td>
+                        <td className="px-6 py-4 whitespace-nowrap">
+                          <div className="flex items-center">
+                            <code className="text-sm bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-gray-200 px-2 py-1 rounded font-mono">
+                              {participante.codigoReferencia}
+                            </code>
+                            <button 
+                              onClick={() => navigator.clipboard.writeText(participante.codigoReferencia)}
+                              className="ml-2 p-1 text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 transition-colors"
+                              title="Copiar código"
+                            >
+                              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
+                              </svg>
+                            </button>
+                          </div>
+                        </td>
+                      </tr>
+                    ))}
+                </tbody>
+              </table>
+            )}
           </div>
 
           {/* Footer note */}
