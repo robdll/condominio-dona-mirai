@@ -188,7 +188,12 @@ export default function Participantes() {
                   <p className="text-sm font-medium text-gray-600 dark:text-gray-400">Líder em Indicações</p>
                   <p className="text-lg font-bold text-purple-600 dark:text-purple-400">
                     {participantes.length > 0 
-                      ? `${participantes.reduce((max, p) => p.indicacoes > max.indicacoes ? p : max, participantes[0])?.apartamento.padStart(3, '0')}-${participantes.reduce((max, p) => p.indicacoes > max.indicacoes ? p : max, participantes[0])?.bloco.padStart(2, '0')}`
+                      ? (() => {
+                          const leader = participantes.reduce((max, p) => p.indicacoes > max.indicacoes ? p : max, participantes[0]);
+                          return leader.indicacoes > 0 
+                            ? `${leader.apartamento.padStart(3, '0')}-${leader.bloco.padStart(2, '0')}`
+                            : 'N/A';
+                        })()
                       : 'N/A'
                     }
                   </p>
