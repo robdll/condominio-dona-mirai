@@ -80,6 +80,11 @@ export default function Home() {
                   </p>
                 </div>
               </div>
+              <div className="mt-6 bg-gradient-to-r from-red-50 to-red-100 dark:from-red-900/20 dark:to-red-800/20 p-4 rounded-lg border-l-4 border-red-500">
+                <p className="font-semibold text-gray-800 dark:text-white">
+                  <span className="text-red-600 dark:text-red-400">👉 Condição:</span> os prêmios somente serão entregues caso sejam alcançados pelo menos <span className="font-bold">300 votos totais</span> na votação.
+                </p>
+              </div>
             </div>
           </section>
 
