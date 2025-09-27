@@ -32,6 +32,9 @@ export default function Participantes() {
     } else if (sortConfig.key === 'indicacoes') {
       aValue = a.indicacoes;
       bValue = b.indicacoes;
+    } else if (sortConfig.key === 'protocolo') {
+      aValue = a.protocolo || '';
+      bValue = b.protocolo || '';
     } else {
       aValue = a[sortConfig.key];
       bValue = b[sortConfig.key];
@@ -292,6 +295,31 @@ export default function Participantes() {
                     <th className="px-6 py-4 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
                       Código de Referência
                     </th>
+                    <th 
+                      className="px-6 py-4 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-600 transition-colors"
+                      onClick={() => handleSort('protocolo')}
+                    >
+                      <div className="flex items-center">
+                        Protocolo
+                        <div className="ml-1">
+                          {sortConfig.key === 'protocolo' ? (
+                            sortConfig.direction === 'asc' ? (
+                              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 15l7-7 7 7" />
+                              </svg>
+                            ) : (
+                              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                              </svg>
+                            )
+                          ) : (
+                            <svg className="w-4 h-4 opacity-30" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 9l4-4 4 4m0 6l-4 4-4-4" />
+                            </svg>
+                          )}
+                        </div>
+                      </div>
+                    </th>
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-gray-200 dark:divide-gray-700">
@@ -334,13 +362,20 @@ export default function Participantes() {
                             </code>
                             <button 
                               onClick={() => navigator.clipboard.writeText(participante.codigoReferencia)}
-                              className="ml-2 p-1 text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 transition-colors"
+                              className="ml-2 p-1 text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 transition-colors cursor-pointer"
                               title="Copiar código"
                             >
                               <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
                               </svg>
                             </button>
+                          </div>
+                        </td>
+                        <td className="px-6 py-4 whitespace-nowrap">
+                          <div className="flex items-center">
+                            <code className="text-sm bg-blue-50 dark:bg-blue-900/20 text-blue-800 dark:text-blue-300 px-2 py-1 rounded font-mono">
+                              {participante.protocolo || 'N/A'}
+                            </code>
                           </div>
                         </td>
                       </tr>

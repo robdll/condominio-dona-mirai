@@ -8,7 +8,8 @@ export async function GET() {
         apartment_number,
         block_number,
         num_referrals,
-        referral_code
+        referral_code,
+        protocol
       FROM residents 
       ORDER BY num_referrals DESC, apartment_number ASC
     `;
@@ -20,7 +21,8 @@ export async function GET() {
       apartamento: row.apartment_number.toString(),
       bloco: row.block_number.toString(),
       indicacoes: row.num_referrals,
-      codigoReferencia: row.referral_code
+      codigoReferencia: row.referral_code,
+      protocolo: row.protocol || ''
     }));
     
     return Response.json({
