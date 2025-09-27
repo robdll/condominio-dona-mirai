@@ -3,14 +3,11 @@ export default function Home() {
     <div className="min-h-screen bg-gradient-radial from-blue-50 via-indigo-50 to-purple-50 dark:from-gray-900 dark:via-blue-900 dark:to-purple-900">
       <div className="container mx-auto px-4 py-8 max-w-4xl">
         {/* Header */}
-        <div className="text-center mb-12">
-          <h1 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
-            Regulamento da Campanha
-          </h1>
-          <h2 className="text-2xl md:text-3xl font-semibold text-gray-700 dark:text-gray-200 mb-2">
+        <div className="text-center mb-8">
+          <h2 className="text-2xl md:text-3xl font-semibold text-gray-700 dark:text-[#3b4010]-200 mb-2">
             Condomínio Dona Mirai
           </h2>
-          <p className="text-lg text-gray-600 dark:text-gray-300">
+          <p className="text-lg text-gray-600 dark:text-[#3b4010]-300">
             Incentivo à Participação na Votação
           </p>
         </div>
@@ -18,6 +15,8 @@ export default function Home() {
         {/* Main Content */}
         <div className="bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm rounded-2xl shadow-2xl p-8 md:p-12 border border-white/20 dark:border-gray-700/20">
           
+          <h3 className="text-2xl text-center font-bold text-gray-800 dark:text-white mb-6">Regulamento da Campanha</h3>
+
           {/* Section 1 - Objetivo */}
           <section className="mb-10">
             <div className="flex items-center mb-6">
