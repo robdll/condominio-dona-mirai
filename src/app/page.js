@@ -1,3 +1,5 @@
+import Link from 'next/link';
+
 export default function Home() {
   return (
     <div className="min-h-screen bg-gradient-radial from-blue-50 via-indigo-50 to-purple-50 dark:from-gray-900 dark:via-blue-900 dark:to-purple-900">
@@ -87,7 +89,7 @@ export default function Home() {
             </div>
             <div className="pl-16">
               <div className="space-y-4">
-                <div className="flex items-start">
+                <div className="flex items-center">
                   <div className="w-6 h-6 bg-purple-500 rounded-full flex items-center justify-center text-white text-sm font-bold mr-3 mt-1 flex-shrink-0">
                     1
                   </div>
@@ -95,12 +97,34 @@ export default function Home() {
                     O condômino deve realizar a votação pelo aplicativo <span className="font-semibold text-purple-600 dark:text-purple-400">Condomob</span>.
                   </p>
                 </div>
-                <div className="flex items-start">
+                <div className="flex flex-col items-center justify-center sm:flex-row gap-3 mb-4">
+                  <Link 
+                    href="https://play.google.com/store/apps/details?id=agile.ti.mobile.condomob&hl=en" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center justify-center px-4 py-2 bg-green-600 hover:bg-green-700 text-white rounded-lg transition-colors font-medium"
+                  >
+                    <svg className="w-5 h-5 mr-2" aria-hidden="true" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg"><path fill="none" d="M0,0h40v40H0V0z"></path><g><path d="M19.7,19.2L4.3,35.3c0,0,0,0,0,0c0.5,1.7,2.1,3,4,3c0.8,0,1.5-0.2,2.1-0.6l0,0l17.4-9.9L19.7,19.2z" fill="#EA4335"></path><path d="M35.3,16.4L35.3,16.4l-7.5-4.3l-8.4,7.4l8.5,8.3l7.5-4.2c1.3-0.7,2.2-2.1,2.2-3.6C37.5,18.5,36.6,17.1,35.3,16.4z" fill="#FBBC04"></path><path d="M4.3,4.7C4.2,5,4.2,5.4,4.2,5.8v28.5c0,0.4,0,0.7,0.1,1.1l16-15.7L4.3,4.7z" fill="#4285F4"></path><path d="M19.8,20l8-7.9L10.5,2.3C9.9,1.9,9.1,1.7,8.3,1.7c-1.9,0-3.6,1.3-4,3c0,0,0,0,0,0L19.8,20z" fill="#34A853"></path></g></svg>
+                    <div className="text-nowrap">Play Store</div>
+                  </Link>
+                  <Link 
+                    href="https://apps.apple.com/br/app/condomob-condom%C3%ADnios/id1136370866" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center justify-center px-4 py-2 bg-gray-800 hover:bg-gray-900 text-white rounded-lg transition-colors font-medium"
+                  >
+                    <svg className="w-5 h-5 mr-2" viewBox="0 0 24 24" fill="currentColor">
+                      <path d="M18.71,19.5C17.88,20.74 17,21.95 15.66,21.97C14.32,22 13.89,21.18 12.37,21.18C10.84,21.18 10.37,21.95 9.1,22C7.79,22.05 6.8,20.68 5.96,19.47C4.25,17 2.94,12.45 4.7,9.39C5.57,7.87 7.13,6.91 8.82,6.88C10.1,6.86 11.32,7.75 12.11,7.75C12.89,7.75 14.37,6.68 15.92,6.84C16.57,6.87 18.39,7.1 19.56,8.82C19.47,8.88 17.39,10.1 17.41,12.63C17.44,15.65 20.06,16.66 20.09,16.67C20.06,16.74 19.67,18.11 18.71,19.5M13,3.5C13.73,2.67 14.94,2.04 15.94,2C16.07,3.17 15.6,4.35 14.9,5.19C14.21,6.04 13.07,6.7 11.95,6.61C11.8,5.46 12.36,4.26 13,3.5Z"/>
+                    </svg>
+                    Apple Store
+                  </Link>
+                </div>
+                <div className="flex items-center">
                   <div className="w-6 h-6 bg-purple-500 rounded-full flex items-center justify-center text-white text-sm font-bold mr-3 mt-1 flex-shrink-0">
                     2
                   </div>
                   <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
-                    Após votar, deve enviar via WhatsApp para o número <span className="font-semibold text-green-600 dark:text-green-400">+39 351 318 4484</span>:
+                    Após votar, deve enviar via WhatsApp para o número <Link href="https://wa.me/393513184484" target="_blank" rel="noopener noreferrer" className="font-semibold text-green-600 dark:text-green-400 hover:text-green-700 dark:hover:text-green-300 underline transition-colors">+39 351 318 4484</Link>:
                   </p>
                 </div>
                 <div className="ml-9 space-y-2">
@@ -111,7 +135,7 @@ export default function Home() {
                     • Número do bloco e do apartamento.
                   </p>
                 </div>
-                <div className="flex items-start">
+                <div className="flex items-center">
                   <div className="w-6 h-6 bg-purple-500 rounded-full flex items-center justify-center text-white text-sm font-bold mr-3 mt-1 flex-shrink-0">
                     3
                   </div>
