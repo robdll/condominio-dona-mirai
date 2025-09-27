@@ -8,6 +8,43 @@ export default function Participantes() {
   const [participantes, setParticipantes] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [sortConfig, setSortConfig] = useState({ key: 'indicacoes', direction: 'desc' });
+
+  // Sorting function
+  const handleSort = (key) => {
+    let direction = 'asc';
+    if (sortConfig.key === key && sortConfig.direction === 'asc') {
+      direction = 'desc';
+    }
+    setSortConfig({ key, direction });
+  };
+
+  // Sort participants based on current sort configuration
+  const sortedParticipantes = [...participantes].sort((a, b) => {
+    let aValue, bValue;
+    
+    if (sortConfig.key === 'bloco') {
+      aValue = a.bloco;
+      bValue = b.bloco;
+    } else if (sortConfig.key === 'apartamento') {
+      aValue = parseInt(a.apartamento);
+      bValue = parseInt(b.apartamento);
+    } else if (sortConfig.key === 'indicacoes') {
+      aValue = a.indicacoes;
+      bValue = b.indicacoes;
+    } else {
+      aValue = a[sortConfig.key];
+      bValue = b[sortConfig.key];
+    }
+
+    if (aValue < bValue) {
+      return sortConfig.direction === 'asc' ? -1 : 1;
+    }
+    if (aValue > bValue) {
+      return sortConfig.direction === 'asc' ? 1 : -1;
+    }
+    return 0;
+  });
 
   useEffect(() => {
     const fetchResidents = async () => {
@@ -148,7 +185,7 @@ export default function Participantes() {
                   <p className="text-sm font-medium text-gray-600 dark:text-gray-400">Líder em Indicações</p>
                   <p className="text-lg font-bold text-purple-600 dark:text-purple-400">
                     {participantes.length > 0 
-                      ? `${participantes.reduce((max, p) => p.indicacoes > max.indicacoes ? p : max, participantes[0])?.apartamento}-${participantes.reduce((max, p) => p.indicacoes > max.indicacoes ? p : max, participantes[0])?.bloco}`
+                      ? `${participantes.reduce((max, p) => p.indicacoes > max.indicacoes ? p : max, participantes[0])?.apartamento.padStart(3, '0')}-${participantes.reduce((max, p) => p.indicacoes > max.indicacoes ? p : max, participantes[0])?.bloco.padStart(2, '0')}`
                       : 'N/A'
                     }
                   </p>
@@ -177,14 +214,80 @@ export default function Participantes() {
               <table className="w-full bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden">
                 <thead className="bg-gradient-to-r from-gray-50 to-gray-100 dark:from-gray-700 dark:to-gray-600">
                   <tr>
-                    <th className="px-6 py-4 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
-                      Apartamento
+                    <th 
+                      className="px-6 py-4 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-600 transition-colors"
+                      onClick={() => handleSort('apartamento')}
+                    >
+                      <div className="flex items-center">
+                        Apartamento
+                        <div className="ml-1">
+                          {sortConfig.key === 'apartamento' ? (
+                            sortConfig.direction === 'asc' ? (
+                              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 15l7-7 7 7" />
+                              </svg>
+                            ) : (
+                              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                              </svg>
+                            )
+                          ) : (
+                            <svg className="w-4 h-4 opacity-30" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 9l4-4 4 4m0 6l-4 4-4-4" />
+                            </svg>
+                          )}
+                        </div>
+                      </div>
                     </th>
-                    <th className="px-6 py-4 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
-                      Bloco
+                    <th 
+                      className="px-6 py-4 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-600 transition-colors"
+                      onClick={() => handleSort('bloco')}
+                    >
+                      <div className="flex items-center">
+                        Bloco
+                        <div className="ml-1">
+                          {sortConfig.key === 'bloco' ? (
+                            sortConfig.direction === 'asc' ? (
+                              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 15l7-7 7 7" />
+                              </svg>
+                            ) : (
+                              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                              </svg>
+                            )
+                          ) : (
+                            <svg className="w-4 h-4 opacity-30" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 9l4-4 4 4m0 6l-4 4-4-4" />
+                            </svg>
+                          )}
+                        </div>
+                      </div>
                     </th>
-                    <th className="px-6 py-4 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
-                      Indicações
+                    <th 
+                      className="px-6 py-4 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-600 transition-colors"
+                      onClick={() => handleSort('indicacoes')}
+                    >
+                      <div className="flex items-center">
+                        Indicações
+                        <div className="ml-1">
+                          {sortConfig.key === 'indicacoes' ? (
+                            sortConfig.direction === 'asc' ? (
+                              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 15l7-7 7 7" />
+                              </svg>
+                            ) : (
+                              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                              </svg>
+                            )
+                          ) : (
+                            <svg className="w-4 h-4 opacity-30" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 9l4-4 4 4m0 6l-4 4-4-4" />
+                            </svg>
+                          )}
+                        </div>
+                      </div>
                     </th>
                     <th className="px-6 py-4 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
                       Código de Referência
@@ -192,34 +295,21 @@ export default function Participantes() {
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-gray-200 dark:divide-gray-700">
-                  {participantes
-                    .sort((a, b) => b.indicacoes - a.indicacoes) // Sort by referrals descending
-                    .map((participante, index) => (
+                  {sortedParticipantes.map((participante, index) => (
                       <tr 
                         key={`${participante.apartamento}-${participante.bloco}`}
-                        className={`hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors ${
-                          index === 0 ? 'bg-gradient-to-r from-yellow-50 to-yellow-100 dark:from-yellow-900/20 dark:to-yellow-800/20' : ''
-                        }`}
+                        className={`hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors`}
                       >
                         <td className="px-6 py-4 whitespace-nowrap">
                           <div className="flex items-center">
-                            {index === 0 && (
-                              <div className="flex-shrink-0 mr-3">
-                                <div className="w-6 h-6 bg-yellow-500 rounded-full flex items-center justify-center">
-                                  <svg className="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20">
-                                    <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                                  </svg>
-                                </div>
-                              </div>
-                            )}
                             <div className="text-sm font-medium text-gray-900 dark:text-white">
-                              {participante.apartamento}
+                              {participante.apartamento.padStart(3, '0')}
                             </div>
                           </div>
                         </td>
                         <td className="px-6 py-4 whitespace-nowrap">
                           <div className="text-sm text-gray-900 dark:text-white">
-                            {participante.bloco}
+                            {participante.bloco.padStart(2, '0')}
                           </div>
                         </td>
                         <td className="px-6 py-4 whitespace-nowrap">
