@@ -8,7 +8,7 @@ export default function Home() {
         {/* Header */}
         <div className="text-center mb-8">
           <div className="flex justify-center mb-4">
-            <Image 
+            <Image
               src="/logo.webp" 
               alt="Condomínio Dona Mirai Logo" 
               width={200}
@@ -253,6 +253,41 @@ export default function Home() {
               <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
                 O organizador se reserva o direito de validar os dados enviados, assegurando a regularidade da participação.
               </p>
+            </div>
+          </section>
+
+          {/* Disclaimer Section */}
+          <section className="mb-10">
+            <div className="flex items-center mb-6">
+              <div className="w-12 h-12 bg-gradient-to-r from-amber-500 to-amber-600 rounded-full flex items-center justify-center text-white font-bold text-xl mr-4">
+                ⚠️
+              </div>
+              <h3 className="text-2xl font-bold text-gray-800 dark:text-white">Nota importante</h3>
+            </div>
+            <div className="pl-4 lg:pl-16">
+              <div className="bg-gradient-to-r from-amber-50 to-amber-100 dark:from-amber-900/20 dark:to-amber-800/20 p-6 rounded-lg border-l-4 border-amber-500">
+                <p className="text-gray-800 dark:text-white font-semibold mb-4">
+                  Esta Campanha de Incentivo à Participação:
+                </p>
+                <ul className="space-y-3 text-gray-700 dark:text-gray-300">
+                  <li className="flex items-start">
+                    <span className="text-amber-600 dark:text-amber-400 mr-2">•</span>
+                    <span>não possui fins comerciais;</span>
+                  </li>
+                  <li className="flex items-start">
+                    <span className="text-amber-600 dark:text-amber-400 mr-2">•</span>
+                    <span>é uma iniciativa voluntária de um dos condôminos e não foi deliberada pelo condomínio;</span>
+                  </li>
+                  <li className="flex items-start">
+                    <span className="text-amber-600 dark:text-amber-400 mr-2">•</span>
+                    <span>não há custo para participar;</span>
+                  </li>
+                  <li className="flex items-start">
+                    <span className="text-amber-600 dark:text-amber-400 mr-2">•</span>
+                    <span>em caso de premiação, cabe exclusivamente ao condômino contemplado a declaração da renda recebida perante a Receita Federal, se aplicável.</span>
+                  </li>
+                </ul>
+              </div>
             </div>
           </section>
 
