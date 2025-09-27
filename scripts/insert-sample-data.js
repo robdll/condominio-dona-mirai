@@ -8,7 +8,14 @@ async function insertSampleData() {
     
     // Sample residents data
     const sampleResidents = [
-      { apartment: 105, block: 19, referrals: 0, code: '105-19', phone: '+5577999892103', protocol: 'PROT001' },
+      {
+        apartment: 105,
+        block: 15,
+        referrals: 0,
+        code: '105-15',
+        phone: '+',
+        protocol: ''
+      },
     ];
     
     // Insert sample data
