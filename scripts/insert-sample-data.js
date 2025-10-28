@@ -9,11 +9,12 @@ async function insertSampleData() {
     // Sample residents data
     const sampleResidents = [
       {
-        apartment: 105,
-        block: 15,
+        apartment: 1,
+        block: 1,
         referrals: 0,
-        code: '105-15',
+        code: '',
         phone: '+',
+        email: '',
         protocol: ''
       },
     ];
@@ -22,16 +23,17 @@ async function insertSampleData() {
     for (const resident of sampleResidents) {
       try {
         await client.query(`
-          INSERT INTO residents (apartment_number, block_number, phone_number, num_referrals, referral_code, protocol)
-          VALUES ($1, $2, $3, $4, $5, $6)
+          INSERT INTO residents (apartment_number, block_number, phone_number, num_referrals, referral_code, protocol, email)
+          VALUES ($1, $2, $3, $4, $5, $6, $7)
           ON CONFLICT (block_number, apartment_number) 
           DO UPDATE SET 
             phone_number = EXCLUDED.phone_number,
             num_referrals = EXCLUDED.num_referrals,
             referral_code = EXCLUDED.referral_code,
             protocol = EXCLUDED.protocol,
+            email = EXCLUDED.email,
             updated_at = NOW()
-        `, [resident.apartment, resident.block, resident.phone, resident.referrals, resident.code, resident.protocol]);
+        `, [resident.apartment, resident.block, resident.phone, resident.referrals, resident.code, resident.protocol, resident.email]);
         
         console.log(`✅ Inserted/Updated: Apartment ${resident.apartment}, Block ${resident.block}`);
       } catch (error) {
