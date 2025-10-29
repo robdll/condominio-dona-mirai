@@ -9,7 +9,7 @@ async function insertSampleData() {
     // Sample residents data
     const sampleResidents = [
       {
-        apartment: 1,
+        apartment: 101,
         block: 1,
         referrals: 0,
         code: '',

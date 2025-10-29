@@ -260,13 +260,13 @@ export default function Sorteio() {
         <div className="bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm rounded-2xl shadow-2xl p-8 md:p-12 border border-white/20 dark:border-gray-700/20">
           
           {/* Title */}
-          <h1 className="text-3xl md:text-4xl text-center font-bold text-gray-800 dark:text-white mb-6">
+          <h1 className="text-3xl md:text-4xl text-center font-bold text-gray-900 dark:text-white mb-6">
             🎉 Sorteio dos 4 Sortudos! 🎉
           </h1>
 
           {/* Description */}
           <div className="text-center mb-8">
-            <p className="text-lg text-gray-700 dark:text-gray-300 leading-relaxed max-w-3xl mx-auto">
+            <p className="text-lg text-gray-700 dark:text-gray-200 leading-relaxed max-w-3xl mx-auto">
               Escolha o método de sorteio e descubra quem são os vencedores da campanha de incentivo à votação!
             </p>
           </div>
@@ -313,7 +313,7 @@ export default function Sorteio() {
 
           {/* Participants Blocks */}
           <div>
-            <h2 className="text-2xl font-bold text-gray-800 dark:text-white mb-6 text-center">
+            <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-6 text-center">
               Lista de Participantes ({participantes.length})
             </h2>
             
@@ -324,10 +324,10 @@ export default function Sorteio() {
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
                   </svg>
                 </div>
-                <h3 className="text-lg font-semibold text-gray-700 dark:text-gray-300 mb-2">
+                <h3 className="text-lg font-semibold text-gray-800 dark:text-gray-200 mb-2">
                   Todos os participantes foram sorteados!
                 </h3>
-                <p className="text-gray-500 dark:text-gray-400">
+                <p className="text-gray-600 dark:text-gray-300">
                   Clique em Reiniciar para fazer um novo sorteio.
                 </p>
               </div>
@@ -433,7 +433,7 @@ export default function Sorteio() {
           {/* Winners Display */}
           {(referralWinner || randomWinners.length > 0) && (
             <div className="mt-8">
-              <h2 className="text-2xl font-bold text-gray-800 dark:text-white mb-6 text-center">
+              <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-6 text-center">
                 🏆 Vencedores! 🏆
               </h2>
               
@@ -490,7 +490,7 @@ export default function Sorteio() {
                   Consulte a lista completa de participantes com todas as informações.
                 </p>
                 <Link 
-                  href="/participantes"
+                  href="/incentivo-votacao/participantes"
                   className="inline-flex items-center px-6 py-3 bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white rounded-lg transition-all duration-200 font-medium shadow-lg hover:shadow-xl"
                 >
                   <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -505,8 +505,8 @@ export default function Sorteio() {
 
         {/* Footer */}
         <div className="text-center mt-12">
-          <p className="text-gray-600 dark:text-gray-400 text-sm">
-            Condomínio Dona Mirai - Sorteio dos 4 Sortudos
+          <p className="text-gray-700 dark:text-gray-200 text-sm">
+            Condomínio Dona Mirai - Sorteio dos 4 Sortudos - Incentivo à Votação
           </p>
         </div>
       </div>
