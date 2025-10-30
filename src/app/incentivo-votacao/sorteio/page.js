@@ -267,7 +267,7 @@ export default function Sorteio() {
               className={`px-8 py-4 rounded-lg font-bold text-lg transition-all duration-200 ${
                 referralButtonDisabled
                   ? 'bg-gray-400 text-gray-600 cursor-not-allowed'
-                  : 'bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white shadow-lg hover:shadow-xl transform hover:scale-105'
+                  : 'bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white shadow-lg hover:shadow-xl'
               }`}
             >
               {referralButtonDisabled ? '✓ Vencedor por Indicações' : '🏆 Vencedor por Indicações'}
@@ -279,7 +279,7 @@ export default function Sorteio() {
               className={`px-8 py-4 rounded-lg font-bold text-lg transition-all duration-200 ${
                 randomButtonClicks >= 4 || isAnimating
                   ? 'bg-gray-400 text-gray-600 cursor-not-allowed'
-                  : 'bg-gradient-to-r from-purple-500 to-purple-600 hover:from-purple-600 hover:to-purple-700 text-white shadow-lg hover:shadow-xl transform hover:scale-105'
+                  : 'bg-gradient-to-r from-purple-500 to-purple-600 hover:from-purple-600 hover:to-purple-700 text-white shadow-lg hover:shadow-xl'
               }`}
             >
               {isAnimating 
@@ -292,7 +292,7 @@ export default function Sorteio() {
 
             <button
               onClick={resetSorteio}
-              className="px-6 py-4 rounded-lg font-bold text-lg bg-gradient-to-r from-gray-500 to-gray-600 hover:from-gray-600 hover:to-gray-700 text-white shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-200"
+              className="px-6 py-4 rounded-lg font-bold text-lg bg-gradient-to-r from-gray-500 to-gray-600 hover:from-gray-600 hover:to-gray-700 text-white shadow-lg hover:shadow-xl transition-all duration-200"
             >
               🔄 Reiniciar
             </button>
