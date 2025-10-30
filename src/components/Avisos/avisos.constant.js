@@ -93,6 +93,25 @@ Atenciosamente,
 A Administração`,
     category: "Outros",
   },
+
+  {
+    id: 6,
+    title: "Quadriciclo do Condomínio Dona Miraí chegou!",
+    date: "2025-10-30",
+    description: `🟩 INFORME AOS CONDÔMINOS 🟩
+
+É com muita satisfação e alegria que informamos que o quadriciclo do Condomínio Dona Miraí já chegou! 🚜✨
+
+Este é mais um passo importante para garantir dignidade e segurança aos nossos colaboradores, além de maior agilidade e eficiência na coleta de lixo e manutenção das áreas comuns.
+
+Agora, estamos apenas aguardando a produção do reboque, que será especialmente desenvolvido para o transporte dos resíduos.
+
+Seguimos trabalhando com responsabilidade e entusiasmo para tornar nosso condomínio cada vez melhor para todos! 💚
+
+Atenciosamente,
+A Administração`,
+    category: "Outros",
+  },
 ];
 
 export const avisoCategories = [
