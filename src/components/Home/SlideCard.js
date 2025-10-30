@@ -9,7 +9,7 @@ export default function SlideCard({ slide }) {
         {/* Content Side */}
         <div className="flex-1 px-4 py-8 md:px-6 md:py-12">
           <div className="max-w-lg">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-6">
+            <h2 className="text-2xl md:text-4xl font-bold text-gray-900 dark:text-white mb-6">
               {slide.title}
             </h2>
             <p className="text-lg text-gray-800 dark:text-gray-200 mb-8 leading-relaxed">

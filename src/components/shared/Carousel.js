@@ -4,34 +4,39 @@ import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 
-export default function Carousel({ slides = [] }) {
+export default function Carousel({ slides = [], children }) {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isHovered, setIsHovered] = useState(false);
 
+  // Normalize slides: prefer children if provided
+  const slidesFromChildren = Array.isArray(children) ? children : (children ? [children] : []);
+  const usingChildren = slidesFromChildren.length > 0;
+  const totalSlides = usingChildren ? slidesFromChildren.length : slides.length;
+
   // Auto-advance slides every 4.5 seconds
   useEffect(() => {
-    if (slides.length <= 1 || isHovered) return;
+    if (totalSlides <= 1 || isHovered) return;
 
     const interval = setInterval(() => {
-      setCurrentSlide((prev) => (prev + 1) % slides.length);
+      setCurrentSlide((prev) => (prev + 1) % totalSlides);
     }, 4500);
 
     return () => clearInterval(interval);
-  }, [slides.length, isHovered]);
+  }, [totalSlides, isHovered]);
 
   const goToSlide = (index) => {
     setCurrentSlide(index);
   };
 
   const goToPrevious = () => {
-    setCurrentSlide((prev) => (prev - 1 + slides.length) % slides.length);
+    setCurrentSlide((prev) => (prev - 1 + totalSlides) % totalSlides);
   };
 
   const goToNext = () => {
-    setCurrentSlide((prev) => (prev + 1) % slides.length);
+    setCurrentSlide((prev) => (prev + 1) % totalSlides);
   };
 
-  if (slides.length === 0) {
+  if (totalSlides === 0) {
     return (
       <div className="w-full h-96 bg-gray-100 dark:bg-gray-800 rounded-lg flex items-center justify-center">
         <p className="text-gray-500 dark:text-gray-400">Nenhum slide disponível</p>
@@ -39,7 +44,7 @@ export default function Carousel({ slides = [] }) {
     );
   }
 
-  const currentSlideData = slides[currentSlide];
+  const currentSlideData = usingChildren ? null : slides[currentSlide];
 
   return (
     <div 
@@ -49,81 +54,91 @@ export default function Carousel({ slides = [] }) {
     >
       {/* Slide Content */}
       <div className="relative">
-        {/* Desktop Layout */}
-        <div className="hidden md:flex items-center min-h-[500px]">
-          {/* Content Side */}
-          <div className="flex-1 px-4 py-8 md:px-6 md:py-12">
-            <div className="max-w-lg">
-              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-6">
-                {currentSlideData.title}
-              </h2>
-              <p className="text-lg text-gray-800 dark:text-gray-200 mb-8 leading-relaxed">
-                {currentSlideData.description}
-              </p>
-              {currentSlideData.buttonText && currentSlideData.buttonLink && (
-                <Link
-                  href={currentSlideData.buttonLink}
-                  className="inline-flex items-center px-8 py-4 bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white rounded-lg transition-all duration-200 font-medium shadow-lg hover:shadow-xl transform hover:scale-105"
-                >
-                  {currentSlideData.buttonText}
-                  <svg className="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                  </svg>
-                </Link>
-              )}
-            </div>
+        {usingChildren ? (
+          // Children mode: render only the active child
+          <div className="min-h-[320px] flex items-center justify-center">
+            {slidesFromChildren[currentSlide]}
           </div>
-          
-          {/* Image Side */}
-          <div className="flex-1 px-4 py-8 md:px-6 md:py-12">
-            <div className="relative h-80 rounded-lg overflow-hidden">
-              <Image
-                src={currentSlideData.image}
-                alt={currentSlideData.title}
-                fill
-                className="object-contain"
-              />
+        ) : (
+          // Legacy slides prop mode
+          <>
+            {/* Desktop Layout */}
+            <div className="hidden md:flex items-center min-h[500px] md:min-h-[500px]">
+              {/* Content Side */}
+              <div className="flex-1 px-4 py-8 md:px-6 md:py-12">
+                <div className="max-w-lg">
+                  <h2 className="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-6">
+                    {currentSlideData.title}
+                  </h2>
+                  <p className="text-lg text-gray-800 dark:text-gray-200 mb-8 leading-relaxed">
+                    {currentSlideData.description}
+                  </p>
+                  {currentSlideData.buttonText && currentSlideData.buttonLink && (
+                    <Link
+                      href={currentSlideData.buttonLink}
+                      className="inline-flex items-center px-8 py-4 bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white rounded-lg transition-all duration-200 font-medium shadow-lg hover:shadow-xl transform hover:scale-105"
+                    >
+                      {currentSlideData.buttonText}
+                      <svg className="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                      </svg>
+                    </Link>
+                  )}
+                </div>
+              </div>
+              
+              {/* Image Side */}
+              <div className="flex-1 px-4 py-8 md:px-6 md:py-12">
+                <div className="relative h-80 rounded-lg overflow-hidden">
+                  <Image
+                    src={currentSlideData.image}
+                    alt={currentSlideData.title}
+                    fill
+                    className="object-contain"
+                  />
+                </div>
+              </div>
             </div>
-          </div>
-        </div>
 
-        {/* Mobile Layout */}
-        <div className="md:hidden">
-          {/* Image on top */}
-          <div className="relative h-64 w-full">
-            <Image
-              src={currentSlideData.image}
-              alt={currentSlideData.title}
-              fill
-              className="object-contain"
-            />
-          </div>
-          
-          {/* Content below */}
-          <div className="px-4 py-6">
-            <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">
-              {currentSlideData.title}
-            </h2>
-            <p className="text-gray-800 dark:text-gray-200 mb-6 leading-relaxed">
-              {currentSlideData.description}
-            </p>
-            {currentSlideData.buttonText && currentSlideData.buttonLink && (
-              <Link
-                href={currentSlideData.buttonLink}
-                className="inline-flex items-center px-6 py-3 bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white rounded-lg transition-all duration-200 font-medium shadow-lg hover:shadow-xl"
-              >
-                {currentSlideData.buttonText}
-                <svg className="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                </svg>
-              </Link>
-            )}
-          </div>
-        </div>
+            {/* Mobile Layout */}
+            <div className="md:hidden">
+              {/* Image on top */}
+              <div className="relative h-64 w-full">
+                <Image
+                  src={currentSlideData.image}
+                  alt={currentSlideData.title}
+                  fill
+                  className="object-contain"
+                />
+              </div>
+              
+              {/* Content below */}
+              <div className="px-4 py-6">
+                <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">
+                  {currentSlideData.title}
+                </h2>
+                <p className="text-gray-800 dark:text-gray-200 mb-6 leading-relaxed">
+                  {currentSlideData.description}
+                </p>
+                {currentSlideData.buttonText && currentSlideData.buttonLink && (
+                  <Link
+                    href={currentSlideData.buttonLink}
+                    className="inline-flex items-center px-6 py-3 bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white rounded-lg transition-all duration-200 font-medium shadow-lg hover:shadow-xl"
+                  >
+                    {currentSlideData.buttonText}
+                    <svg className="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                    </svg>
+                  </Link>
+                )}
+              </div>
+            </div>
+          </>
+        )}
       </div>
 
       {/* Navigation Controls */}
-      {slides.length > 1 && (
+      {totalSlides > 1 && (
         <>
           {/* Previous Button */}
           <button
@@ -147,7 +162,7 @@ export default function Carousel({ slides = [] }) {
 
           {/* Dots Navigation */}
           <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-2">
-            {slides.map((_, index) => (
+            {Array.from({ length: totalSlides }).map((_, index) => (
               <button
                 key={index}
                 onClick={() => goToSlide(index)}

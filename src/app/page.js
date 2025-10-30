@@ -9,7 +9,7 @@ export default function Home() {
       <div className="container mx-auto px-4 py-8 max-w-6xl">
         {/* Header */}
         <div className="text-center mb-8">
-          <h1 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-4">
+          <h1 className="text-2xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">
             Bem-vindos ao Condomínio Dona Mirai
           </h1>
           <p className="text-xl text-gray-700 dark:text-gray-200 max-w-3xl mx-auto">

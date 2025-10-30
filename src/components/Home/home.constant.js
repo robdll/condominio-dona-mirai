@@ -1,6 +1,6 @@
 export const slides = [
   {
-    title: "Campanha de Incentivo à Votação",
+    title: "Incentivo à Votação",
     description: "Participe da nossa campanha especial e concorra a prêmios de até R$ 750,00! A votação é sobre o deslocamento da porta da varanda e sua participação é fundamental para o futuro do nosso condomínio.",
     buttonText: "Ver Regulamento",
     buttonLink: "/incentivo-votacao/regras",
