@@ -3,12 +3,16 @@
 :root {
   --background: #f8fafc;
   --foreground: #171717;
+  --brand-btn: #808868;
+  --brand-btn-hover: #b5bd9b;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --font-sans: var(--font-lato);
+  --color-brandBtn: var(--brand-btn);
+  --color-brandBtnHover: var(--brand-btn-hover);
 }
 
 @media (prefers-color-scheme: dark) {

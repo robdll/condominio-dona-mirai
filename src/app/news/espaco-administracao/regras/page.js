@@ -11,7 +11,7 @@ export default function RegrasPage() {
               <h1 className="text-3xl font-bold text-gray-900">Regras do Espaço Administração</h1>
               <Link 
                 href="/news/espaco-administracao/apartamentos"
-                className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors"
+                className="bg-brandBtn text-white px-4 py-2 rounded-lg hover:bg-brandBtnHover transition-colors"
               >
                 Ver Apartamentos
               </Link>
@@ -98,7 +98,7 @@ export default function RegrasPage() {
           <div className="mt-8 flex justify-center">
             <Link 
               href="/news/espaco-administracao/apartamentos"
-              className="bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition-colors font-medium"
+              className="bg-brandBtn text-white px-6 py-3 rounded-lg hover:bg-brandBtnHover transition-colors font-medium"
             >
               Ver Apartamentos Disponíveis →
             </Link>

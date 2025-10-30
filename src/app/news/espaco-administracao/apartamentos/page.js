@@ -58,7 +58,7 @@ export default function ApartamentosPage() {
               <h1 className="text-3xl font-bold text-gray-900">Apartamentos Disponíveis</h1>
               <Link 
                 href="/news/espaco-administracao/regras"
-                className="bg-gray-600 text-white px-4 py-2 rounded-lg hover:bg-gray-700 transition-colors"
+                className="bg-brandBtn text-white px-4 py-2 rounded-lg hover:bg-brandBtnHover transition-colors"
               >
                 Ver Regras
               </Link>
@@ -189,7 +189,7 @@ export default function ApartamentosPage() {
             </p>
             <Link 
               href="/news/espaco-administracao/regras"
-              className="bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition-colors font-medium"
+              className="bg-brandBtn text-white px-6 py-3 rounded-lg hover:bg-brandBtnHover transition-colors font-medium"
             >
               Ver Regras da Proposta
             </Link>

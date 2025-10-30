@@ -33,7 +33,7 @@ export default function NoticeCard({ aviso, onReadMore }) {
       {/* Read More Button */}
       <button 
         onClick={() => onReadMore && onReadMore(aviso)}
-        className="w-full px-4 py-2 bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white rounded-lg transition-all duration-200 font-medium cursor-pointer"
+        className="w-full px-4 py-2 bg-brandBtn hover:bg-brandBtnHover text-white rounded-lg transition-all duration-200 font-medium cursor-pointer"
       >
         Ler Mais
       </button>

@@ -82,7 +82,7 @@ export default function Carousel({ slides = [], children }) {
                   {currentSlideData.buttonText && currentSlideData.buttonLink && (
                     <Link
                       href={currentSlideData.buttonLink}
-                      className="inline-flex items-center px-8 py-4 bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white rounded-lg transition-all duration-200 font-medium shadow-lg hover:shadow-xl"
+                      className="inline-flex items-center px-8 py-4 bg-brandBtn hover:bg-brandBtnHover text-white rounded-lg transition-all duration-200 font-medium shadow-lg hover:shadow-xl"
                     >
                       {currentSlideData.buttonText}
                       <svg className="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -151,7 +151,7 @@ export default function Carousel({ slides = [], children }) {
                 {currentSlideData.buttonText && currentSlideData.buttonLink && (
                   <Link
                     href={currentSlideData.buttonLink}
-                    className="inline-flex items-center px-6 py-3 bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white rounded-lg transition-all duration-200 font-medium shadow-lg hover:shadow-xl"
+                  className="inline-flex items-center px-6 py-3 bg-brandBtn hover:bg-brandBtnHover text-white rounded-lg transition-all duration-200 font-medium shadow-lg hover:shadow-xl"
                   >
                     {currentSlideData.buttonText}
                     <svg className="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
