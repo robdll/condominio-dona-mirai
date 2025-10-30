@@ -35,7 +35,7 @@ export default function Avisos() {
 
         {/* Avisos Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {avisos.map((aviso) => (
+          {[...avisos].reverse().map((aviso) => (
             <NoticeCard
               key={aviso.id}
               aviso={aviso}

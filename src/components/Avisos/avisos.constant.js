@@ -52,6 +52,22 @@ Atenciosamente,
 A Administração`,
     category: "Segurança",
   },
+  {
+    id: 4,
+    title: "Clientes Caixa Liberados para Utilização das Áreas Comuns",
+    date: "2025-10-30",
+    description: `NFORME AOS CONDÔMINOS
+
+Comunicamos que os Clientes Caixa finalmente foram chamados e já estão assinando os contratos de seus imóveis.
+
+Diante disso, informamos que esses moradores estão oficialmente liberados para utilizar as áreas comuns do condomínio, bem como realizar reservas conforme as normas internas.
+
+Sejam todos bem-vindos à nova etapa do nosso condomínio!
+
+Atenciosamente,
+Administração do Condomínio`,
+    category: "Outros",
+  },
 ];
 
 export const avisoCategories = [
@@ -59,7 +75,8 @@ export const avisoCategories = [
   { name: "Assembleia", color: "bg-red-100 text-red-800 dark:bg-red-900/20 dark:text-red-400" },
   { name: "Segurança", color: "bg-blue-100 text-blue-800 dark:bg-blue-900/20 dark:text-blue-400" },
   { name: "Obras", color: "bg-yellow-100 text-yellow-800 dark:bg-yellow-900/20 dark:text-yellow-400" },
-  { name: "Evento", color: "bg-green-100 text-green-800 dark:bg-green-900/20 dark:text-green-400" }
+  { name: "Evento", color: "bg-green-100 text-green-800 dark:bg-green-900/20 dark:text-green-400" },
+  { name: "Outros", color: "bg-gray-100 text-gray-800 dark:bg-gray-900/20 dark:text-gray-400" }
 ];
 
 
