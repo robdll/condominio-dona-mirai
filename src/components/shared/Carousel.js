@@ -3,10 +3,16 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
+import { BanknotesIcon, HomeIcon } from '@heroicons/react/24/outline';
 
 export default function Carousel({ slides = [], children }) {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isHovered, setIsHovered] = useState(false);
+
+  const iconMap = {
+    banknotes: BanknotesIcon,
+    home: HomeIcon,
+  };
 
   // Normalize slides: prefer children if provided
   const slidesFromChildren = Array.isArray(children) ? children : (children ? [children] : []);
@@ -87,9 +93,44 @@ export default function Carousel({ slides = [], children }) {
                 </div>
               </div>
               
-              {/* Image Side */}
+              {/* Visual Side (Icon or Image) */}
               <div className="flex-1 px-4 py-8 md:px-6 md:py-12">
-                <div className="relative h-80 rounded-lg overflow-hidden">
+                {currentSlideData.icon && iconMap[currentSlideData.icon] ? (
+                  <div className="h-80 rounded-lg flex items-center justify-center">
+                    {(() => {
+                      const IconComponent = iconMap[currentSlideData.icon];
+                      return (
+                        <IconComponent className="w-56 h-56 text-blue-600 dark:text-blue-400" />
+                      );
+                    })()}
+                  </div>
+                ) : (
+                  <div className="relative h-80 rounded-lg overflow-hidden">
+                    <Image
+                      src={currentSlideData.image}
+                      alt={currentSlideData.title}
+                      fill
+                      className="object-contain"
+                    />
+                  </div>
+                )}
+              </div>
+            </div>
+
+            {/* Mobile Layout */}
+            <div className="md:hidden">
+              {/* Visual on top (Icon or Image) */}
+              {currentSlideData.icon && iconMap[currentSlideData.icon] ? (
+                <div className="w-full h-64 flex items-center justify-center">
+                  {(() => {
+                  const IconComponent = iconMap[currentSlideData.icon];
+                    return (
+                      <IconComponent className="w-40 h-40 text-blue-600 dark:text-blue-400" />
+                    );
+                  })()}
+                </div>
+              ) : (
+                <div className="relative h-64 w-full">
                   <Image
                     src={currentSlideData.image}
                     alt={currentSlideData.title}
@@ -97,20 +138,7 @@ export default function Carousel({ slides = [], children }) {
                     className="object-contain"
                   />
                 </div>
-              </div>
-            </div>
-
-            {/* Mobile Layout */}
-            <div className="md:hidden">
-              {/* Image on top */}
-              <div className="relative h-64 w-full">
-                <Image
-                  src={currentSlideData.image}
-                  alt={currentSlideData.title}
-                  fill
-                  className="object-contain"
-                />
-              </div>
+              )}
               
               {/* Content below */}
               <div className="px-4 py-6">

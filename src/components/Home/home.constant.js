@@ -4,14 +4,14 @@ export const slides = [
     description: "Participe da nossa campanha especial e concorra a prêmios de até R$ 750,00! A votação é sobre o deslocamento da porta da varanda e sua participação é fundamental para o futuro do nosso condomínio.",
     buttonText: "Ver Regulamento",
     buttonLink: "/incentivo-votacao/regras",
-    image: "/logo.webp"
+    icon: 'banknotes'
   },
   {
     title: "Alluga para o Mirai!",
     description: 'Alugue seu imóvel para o condomínio abrigar administração e colaboradores, liberando a Lavanderia e a Sala de Poker para os moradores.',
     buttonText: "Ler Detalhes",
     buttonLink: '/alugue-para-o-mirai',
-    image: "/logo.webp"
+    icon: 'home'
   }
 ];
 
