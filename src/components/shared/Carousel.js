@@ -100,7 +100,7 @@ export default function Carousel({ slides = [], children }) {
                     {(() => {
                       const IconComponent = iconMap[currentSlideData.icon];
                       return (
-                        <IconComponent className="w-56 h-56 text-blue-600 dark:text-blue-400" />
+                        <IconComponent className="w-56 h-56 text-brandBtn" />
                       );
                     })()}
                   </div>
@@ -125,7 +125,7 @@ export default function Carousel({ slides = [], children }) {
                   {(() => {
                   const IconComponent = iconMap[currentSlideData.icon];
                     return (
-                      <IconComponent className="w-40 h-40 text-blue-600 dark:text-blue-400" />
+                      <IconComponent className="w-40 h-40 text-brandBtn" />
                     );
                   })()}
                 </div>

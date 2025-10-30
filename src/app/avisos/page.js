@@ -2,6 +2,7 @@
 
 import Image from 'next/image';
 import { useState } from 'react';
+import Link from 'next/link';
 import NoticeCard from '../../components/Avisos/NoticeCard';
 import NoticeModal from '../../components/Avisos/NoticeModal';
 import { avisos } from '../../components/Avisos/avisos.constant';
@@ -24,11 +25,13 @@ export default function Avisos() {
     <div className="min-h-screen bg-gradient-radial from-blue-50 via-indigo-50 to-purple-50 dark:from-gray-900 dark:via-blue-900 dark:to-purple-900">
       <div className="container mx-auto px-4 py-8 max-w-6xl min-h-[calc(100vh-8rem)]">
         {/* Header */}
-        <div className="text-center mb-8">
+        <div className="text-center mb-6">
           <h1 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">
             Avisos do Condomínio
           </h1>
         </div>
+
+        {/* Back Button moved to bottom */}
 
         {/* Avisos Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -59,6 +62,16 @@ export default function Avisos() {
             </div>
           </div>
         )}
+
+        {/* Back Button (bottom) */}
+        <div className="mt-12 flex justify-center">
+          <Link href="/" className="inline-flex items-center gap-2 px-5 py-2.5 bg-brandBtn hover:bg-brandBtnHover text-white rounded-lg transition-colors">
+            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+            </svg>
+            Voltar
+          </Link>
+        </div>
 
         {/* Footer */}
         <div className="text-center mt-12">

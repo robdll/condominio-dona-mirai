@@ -21,12 +21,12 @@ export default function NoticeCard({ aviso, onReadMore }) {
       </div>
 
       {/* Title */}
-      <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3 line-clamp-2">
+      <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-4 line-clamp-2 min-h-[56px]">
         {aviso.title}
       </h3>
 
       {/* Description */}
-      <p className="text-gray-700 dark:text-gray-200 text-sm leading-relaxed line-clamp-4 mb-4">
+      <p className="text-gray-700 dark:text-gray-200 text-sm leading-relaxed line-clamp-4 mb-6">
         {aviso.description}
       </p>
 
