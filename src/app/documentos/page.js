@@ -1,26 +1,62 @@
 'use client';
 
 import { useState, useMemo } from 'react';
+import Link from 'next/link';
 import { documentos } from '../../components/Documentos/documentos.constant';
 import { formatDate } from '../../lib/utils';
 
 export default function Documentos() {
   // Search state
   const [searchTerm, setSearchTerm] = useState('');
+  // Sort state
+  const [sortField, setSortField] = useState('date');
+  const [sortDirection, setSortDirection] = useState('desc');
 
-  // Filter documents based on search term
-  const filteredDocumentos = useMemo(() => {
-    if (!searchTerm.trim()) {
-      return documentos;
+  // Filter and sort documents
+  const filteredAndSortedDocumentos = useMemo(() => {
+    let filtered = documentos;
+    
+    // Filter by search term
+    if (searchTerm.trim()) {
+      const term = searchTerm.toLowerCase();
+      filtered = documentos.filter(documento => 
+        documento.name.toLowerCase().includes(term) || 
+        documento.description.toLowerCase().includes(term) ||
+        formatDate(documento.date).toLowerCase().includes(term)
+      );
     }
     
-    const term = searchTerm.toLowerCase();
-    return documentos.filter(documento => 
-      documento.name.toLowerCase().includes(term) || 
-      documento.description.toLowerCase().includes(term) ||
-      formatDate(documento.date).toLowerCase().includes(term)
-    );
-  }, [searchTerm]);
+    // Sort documents
+    return filtered.sort((a, b) => {
+      let aValue, bValue;
+      
+      if (sortField === 'date') {
+        aValue = new Date(a.date);
+        bValue = new Date(b.date);
+      } else if (sortField === 'name') {
+        aValue = a.name.toLowerCase();
+        bValue = b.name.toLowerCase();
+      } else {
+        aValue = a.description.toLowerCase();
+        bValue = b.description.toLowerCase();
+      }
+      
+      if (sortDirection === 'asc') {
+        return aValue > bValue ? 1 : -1;
+      } else {
+        return aValue < bValue ? 1 : -1;
+      }
+    });
+  }, [searchTerm, sortField, sortDirection]);
+
+  const handleSort = (field) => {
+    if (sortField === field) {
+      setSortDirection(sortDirection === 'asc' ? 'desc' : 'asc');
+    } else {
+      setSortField(field);
+      setSortDirection('asc');
+    }
+  };
 
   return (
     <div className="min-h-screen bg-gradient-radial from-blue-50 via-indigo-50 to-purple-50 dark:from-gray-900 dark:via-blue-900 dark:to-purple-900">
@@ -57,7 +93,7 @@ export default function Documentos() {
             {searchTerm && (
               <div className="mt-2 text-center">
                 <span className="text-sm text-gray-600 dark:text-gray-400">
-                  {filteredDocumentos.length} documento{filteredDocumentos.length !== 1 ? 's' : ''} encontrado{filteredDocumentos.length !== 1 ? 's' : ''}
+                  {filteredAndSortedDocumentos.length} documento{filteredAndSortedDocumentos.length !== 1 ? 's' : ''} encontrado{filteredAndSortedDocumentos.length !== 1 ? 's' : ''}
                 </span>
               </div>
             )}
@@ -65,7 +101,7 @@ export default function Documentos() {
           
           {/* Table */}
           <div className="overflow-x-auto">
-            {filteredDocumentos.length === 0 ? (
+            {filteredAndSortedDocumentos.length === 0 ? (
               <div className="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-12 text-center">
                 <div className="text-gray-400 dark:text-gray-500 mb-4">
                   <svg className="w-16 h-16 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -86,14 +122,44 @@ export default function Documentos() {
               <table className="w-full bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden">
                 <thead className="bg-gradient-to-r from-gray-50 to-gray-100 dark:from-gray-700 dark:to-gray-600">
                   <tr>
-                    <th className="px-6 py-4 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
-                      Nome do Documento
+                    <th 
+                      className="px-6 py-4 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-600 transition-colors"
+                      onClick={() => handleSort('date')}
+                    >
+                      <div className="flex items-center">
+                        Data
+                        {sortField === 'date' && (
+                          <svg className="ml-1 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d={sortDirection === 'asc' ? 'M5 15l7-7 7 7' : 'M19 9l-7 7-7-7'} />
+                          </svg>
+                        )}
+                      </div>
                     </th>
-                    <th className="px-6 py-4 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
-                      Descrição
+                    <th 
+                      className="px-6 py-4 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-600 transition-colors"
+                      onClick={() => handleSort('name')}
+                    >
+                      <div className="flex items-center">
+                        Nome do Documento
+                        {sortField === 'name' && (
+                          <svg className="ml-1 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d={sortDirection === 'asc' ? 'M5 15l7-7 7 7' : 'M19 9l-7 7-7-7'} />
+                          </svg>
+                        )}
+                      </div>
                     </th>
-                    <th className="px-6 py-4 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
-                      Data
+                    <th 
+                      className="px-6 py-4 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-600 transition-colors"
+                      onClick={() => handleSort('description')}
+                    >
+                      <div className="flex items-center">
+                        Descrição
+                        {sortField === 'description' && (
+                          <svg className="ml-1 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d={sortDirection === 'asc' ? 'M5 15l7-7 7 7' : 'M19 9l-7 7-7-7'} />
+                          </svg>
+                        )}
+                      </div>
                     </th>
                     <th className="px-6 py-4 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
                       Ação
@@ -101,25 +167,19 @@ export default function Documentos() {
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-gray-200 dark:divide-gray-700">
-                  {filteredDocumentos.map((documento) => (
+                  {filteredAndSortedDocumentos.map((documento) => (
                     <tr 
                       key={documento.id}
                       className="hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors"
                     >
                       <td className="px-6 py-4 whitespace-nowrap">
-                        <div className="flex items-center">
-                          <div className="flex-shrink-0 h-10 w-10">
-                            <div className="h-10 w-10 rounded-lg bg-blue-100 dark:bg-blue-900/20 flex items-center justify-center">
-                              <svg className="h-6 w-6 text-blue-600 dark:text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                              </svg>
-                            </div>
-                          </div>
-                          <div className="ml-4">
-                            <div className="text-sm font-medium text-gray-900 dark:text-white">
-                              {documento.name}
-                            </div>
-                          </div>
+                        <div className="text-sm text-gray-600 dark:text-gray-400">
+                          {formatDate(documento.date)}
+                        </div>
+                      </td>
+                      <td className="px-6 py-4 whitespace-nowrap">
+                        <div className="text-sm font-medium text-gray-900 dark:text-white">
+                          {documento.name}
                         </div>
                       </td>
                       <td className="px-6 py-4">
@@ -128,13 +188,8 @@ export default function Documentos() {
                         </div>
                       </td>
                       <td className="px-6 py-4 whitespace-nowrap">
-                        <div className="text-sm text-gray-600 dark:text-gray-400">
-                          {formatDate(documento.date)}
-                        </div>
-                      </td>
-                      <td className="px-6 py-4 whitespace-nowrap">
                         {documento.url ? (
-                          <a
+                          <Link
                             href={documento.url}
                             target="_blank"
                             rel="noopener noreferrer"
@@ -144,7 +199,7 @@ export default function Documentos() {
                               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
                             </svg>
                             {documento.action}
-                          </a>
+                          </Link>
                         ) : (
                           <button 
                             disabled

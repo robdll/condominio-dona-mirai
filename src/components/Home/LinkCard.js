@@ -1,3 +1,5 @@
+import Link from 'next/link';
+
 export default function LinkCard({ linkCard }) {
   return (
     <div className="bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm rounded-2xl shadow-xl p-6 border border-white/20 dark:border-gray-700/20 text-center hover:shadow-2xl transition-all duration-300">
@@ -8,12 +10,12 @@ export default function LinkCard({ linkCard }) {
       </div>
       <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2">{linkCard.title}</h3>
       <p className="text-gray-700 dark:text-gray-200 mb-4">{linkCard.description}</p>
-      <a 
+      <Link 
         href={linkCard.link} 
         className={`${linkCard.linkColor} hover:${linkCard.linkHoverColor} font-medium`}
       >
         {linkCard.linkText} →
-      </a>
+      </Link>
     </div>
   );
 }
