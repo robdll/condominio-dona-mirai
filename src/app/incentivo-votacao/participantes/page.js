@@ -115,19 +115,6 @@ export default function Participantes() {
   return (
     <div className="min-h-screen bg-gradient-radial from-blue-50 via-indigo-50 to-purple-50 dark:from-gray-900 dark:via-blue-900 dark:to-purple-900">
       <div className="container mx-auto px-4 py-8 max-w-6xl">
-        {/* Header */}
-        <div className="text-center mb-8">
-          <div className="flex justify-center mb-4">
-            <Image
-              src="/logo.webp" 
-              alt="Condomínio Dona Mirai Logo" 
-              width={200}
-              height={80}
-              className="h-40 w-auto object-contain bg-[#3b4010] py-1"
-            />
-          </div>
-        </div>
-
 
         {/* Main Content */}
         <div className="bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm rounded-2xl shadow-2xl p-8 md:p-12 border border-white/20 dark:border-gray-700/20">
