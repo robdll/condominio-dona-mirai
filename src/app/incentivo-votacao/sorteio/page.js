@@ -388,7 +388,7 @@ export default function Sorteio() {
                         </div>
                         
                         {/* Apartments Grid */}
-                        <div className="grid grid-cols-4 gap-1">
+                        <div className="grid grid-cols-3 md:grid-cols-4 gap-1">
                           {blockApts.map((participante) => {
                             if (!participante || !participante.apartamento || !participante.bloco) return null;
                             

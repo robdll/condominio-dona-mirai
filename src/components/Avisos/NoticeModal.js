@@ -43,7 +43,7 @@ export default function NoticeModal({ aviso, isOpen, onClose }) {
             </button>
           </div>
 
-          <h1 className="text-2xl md:text-3xl font-bold">
+          <h1 className="text-base md:text-3xl font-bold">
             {aviso.title}
           </h1>
         </div>
