@@ -49,7 +49,7 @@ export default function ApartamentosPage() {
     }));
   };
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-gradient-radial from-blue-50 via-indigo-50 to-purple-50 dark:from-gray-900 dark:via-blue-900 dark:to-purple-900">
       <div className="container mx-auto px-4 py-8">
         <div className="max-w-6xl mx-auto">
           {/* Header */}
@@ -65,34 +65,7 @@ export default function ApartamentosPage() {
             </div>
           </div>
 
-          {/* Stats */}
-          <div className="flex items-center justify-center md:justify-start space-x-8 mb-8">
-            <div className="flex items-center space-x-2">
-              <div className="p-2 bg-blue-100 rounded-full">
-                <svg className="w-5 h-5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
-                </svg>
-              </div>
-              <div>
-                <span className="text-2xl font-bold text-gray-900">{filteredApartments.length}</span>
-                <span className="text-gray-600 ml-1">apartamentos</span>
-              </div>
-            </div>
-
-            <div className="flex items-center space-x-2">
-              <div className="p-2 bg-green-100 rounded-full">
-                <svg className="w-5 h-5 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2H5a2 2 0 00-2-2z" />
-                </svg>
-              </div>
-              <div>
-                <span className="text-2xl font-bold text-gray-900">
-                  {filteredApartments.filter(apt => apt.furniture === 'full').length}
-                </span>
-                <span className="text-gray-600 ml-1">mobiliados</span>
-              </div>
-            </div>
-          </div>
+          
 
           {/* Filter Options */}
           <div className="bg-white p-6 rounded-lg shadow-md mb-8">
