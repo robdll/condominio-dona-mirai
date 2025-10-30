@@ -37,7 +37,7 @@ export default function Navbar() {
               alt="Condomínio Dona Mirai Logo"
               width={120}
               height={48}
-              className="h-12 w-auto object-contain bg-[#3b4010] py-1"
+              className="h-12 w-auto object-contain py-1"
             />
           </Link>
 
