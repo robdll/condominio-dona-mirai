@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 
@@ -9,13 +9,22 @@ export default function Navbar() {
   const [isNewsDropdownOpen, setIsNewsDropdownOpen] = useState(false);
   const [isSorteioDropdownOpen, setIsSorteioDropdownOpen] = useState(false);
   const [isAdminDropdownOpen, setIsAdminDropdownOpen] = useState(false);
+  const newsCloseTimeoutRef = useRef(null);
 
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
   };
 
   const toggleNewsDropdown = () => {
-    setIsNewsDropdownOpen(!isNewsDropdownOpen);
+    const next = !isNewsDropdownOpen;
+    setIsNewsDropdownOpen(next);
+    if (next) {
+      // schedule auto-close if user doesn't hover within 6 seconds
+      if (newsCloseTimeoutRef.current) clearTimeout(newsCloseTimeoutRef.current);
+      newsCloseTimeoutRef.current = setTimeout(() => setIsNewsDropdownOpen(false), 6000);
+    } else {
+      if (newsCloseTimeoutRef.current) clearTimeout(newsCloseTimeoutRef.current);
+    }
   };
 
   const toggleSorteioDropdown = () => {
@@ -25,6 +34,12 @@ export default function Navbar() {
   const toggleAdminDropdown = () => {
     setIsAdminDropdownOpen(!isAdminDropdownOpen);
   };
+
+  useEffect(() => {
+    return () => {
+      if (newsCloseTimeoutRef.current) clearTimeout(newsCloseTimeoutRef.current);
+    };
+  }, []);
 
   return (
     <nav className="bg-white/90 dark:bg-gray-800/90 backdrop-blur-sm shadow-lg border-b border-gray-200 dark:border-gray-700 fixed top-0 left-0 right-0 z-50">
@@ -58,7 +73,18 @@ export default function Navbar() {
             </Link>
 
             {/* News Dropdown */}
-            <div className="relative">
+            <div
+              className="relative"
+              onMouseEnter={() => {
+                if (newsCloseTimeoutRef.current) clearTimeout(newsCloseTimeoutRef.current);
+              }}
+              onMouseLeave={() => {
+                if (isNewsDropdownOpen) {
+                  if (newsCloseTimeoutRef.current) clearTimeout(newsCloseTimeoutRef.current);
+                  newsCloseTimeoutRef.current = setTimeout(() => setIsNewsDropdownOpen(false), 3500);
+                }
+              }}
+            >
               <button
                 onClick={toggleNewsDropdown}
                 className="text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 font-medium transition-colors flex items-center cursor-pointer"
