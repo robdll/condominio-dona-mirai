@@ -75,6 +75,19 @@ export const apartments = [
     furniture: "full",
     description: "Móveis planejados, tudo novo. A unidade fica próximo da portaria. Completo, com wi-fi também"
   },
+
+  {
+    id: 4,
+    apartmentNumber: "102",
+    blockNumber: "31",
+    rooms: 2,
+    monthlyRent: 1100,
+    floor: 1,
+    images: [
+    ],
+    furniture: "no",
+    description: "box e armário nos banheiros, possibilidade de armario na cozinha"
+  },
   
 ];
 
