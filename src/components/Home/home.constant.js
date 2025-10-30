@@ -1,3 +1,5 @@
+import { HomeIcon } from '@heroicons/react/24/outline';
+
 export const slides = [
   {
     title: "Incentivo à Votação",
@@ -28,6 +30,15 @@ export const linkCards = [
     iconPath: "M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L3.732 16.5c-.77.833.192 2.5 1.732 2.5z"
   },
   {
+    title: "Endereço do condomínio",
+    description: `Avenida Mira Flore, 410
+Vitoria da Conquista Ba 45031-905
+Brasil`,
+    iconBgColor: "bg-purple-100 dark:bg-purple-900/20",
+    iconColor: "text-purple-600 dark:text-purple-400",
+    iconPath: HomeIcon
+  },
+  {
     title: "Documentos",
     description: "Acesse documentos importantes e formulários do condomínio",
     link: "/documentos",
@@ -38,15 +49,5 @@ export const linkCards = [
     linkHoverColor: "text-green-700 dark:text-green-300",
     iconPath: "M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
   },
-  // {
-  //   title: "News",
-  //   description: "Sorteio de votação e como funciona o incentivo e como participar",
-  //   link: "/incentivo-votacao/regras",
-  //   linkText: "Ver News",
-  //   iconBgColor: "bg-purple-100 dark:bg-purple-900/20",
-  //   iconColor: "text-purple-600 dark:text-purple-400",
-  //   linkColor: "text-purple-600 dark:text-purple-400",
-  //   linkHoverColor: "text-purple-700 dark:text-purple-300",
-  //   iconPath: "M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
-  // }
+
 ];
