@@ -112,6 +112,29 @@ Atenciosamente,
 A Administração`,
     category: "Outros",
   },
+  {
+    id: 7,
+    title: "Instalação da Tela de Proteção da Quadra",
+    date: "2025-10-31",
+    description: `🏗️ Informe aos Condôminos – Instalação da Tela de Proteção da Quadra
+
+Prezados condôminos,
+
+Informamos que amanhã, sábado, dia 01/11/2025, a quadra poliesportiva estará indisponível para uso durante todo o dia, em razão da instalação da tela de proteção.
+
+O serviço será realizado ao longo de todo o sábado, com liberação do espaço apenas no período noturno, após a conclusão e vistoria da instalação.
+
+Sabemos que o final de semana é um período de maior utilização da quadra e, por isso, buscamos agendar a instalação em um dia mais tranquilo. No entanto, o prestador responsável só teve disponibilidade após o dia 15/11, o que tornaria o processo ainda mais demorado.
+
+Esta é mais uma das ações aprovadas em assembleia, voltada à melhoria das estruturas de lazer e à segurança de todos.
+Estamos trabalhando continuamente para fazer do Condomínio Dona Miraí o melhor da cidade, com conforto, organização e valorização do nosso espaço comum.
+
+Agradecemos a compreensão e colaboração de todos.
+
+Atenciosamente,
+A Administração`,
+    category: "Obras",
+  },
 ];
 
 export const avisoCategories = [

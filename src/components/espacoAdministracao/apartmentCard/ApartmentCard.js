@@ -16,6 +16,12 @@ const ApartmentCard = ({ apartment }) => {
     setIsModalOpen(false);
   };
 
+  const handleBackdropClick = (e) => {
+    if (e.target === e.currentTarget) {
+      handleCloseModal();
+    }
+  };
+
   const goToNextImage = () => {
     setCurrentImageIndex((prev) => (prev + 1) % apartment.images.length);
   };
@@ -112,7 +118,10 @@ const ApartmentCard = ({ apartment }) => {
 
       {/* Modal */}
       {isModalOpen && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+        <div 
+          className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4"
+          onClick={handleBackdropClick}
+        >
           <div className="bg-white rounded-lg max-w-4xl w-full max-h-[90vh] overflow-hidden">
             <div className="flex justify-between items-center p-6 border-b">
               <h2 className="text-2xl font-bold text-gray-900">
@@ -120,7 +129,7 @@ const ApartmentCard = ({ apartment }) => {
               </h2>
               <button
                 onClick={handleCloseModal}
-                className="text-gray-400 hover:text-gray-600 text-2xl"
+                className="text-gray-400 hover:text-gray-600 text-2xl cursor-pointer"
               >
                 ×
               </button>
