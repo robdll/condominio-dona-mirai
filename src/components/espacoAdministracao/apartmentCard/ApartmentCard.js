@@ -21,13 +21,8 @@ const ApartmentCard = ({ apartment, isOpen: controlledIsOpen, onClose: controlle
   }, [controlledIsOpen]);
 
   const handleCardClick = () => {
-    if (controlledIsOpen !== undefined && controlledOnClose) {
-      // If controlled, update URL
-      router.push(`/news/espaco-administracao/apartamentos/${apartment.id}`);
-    } else {
-      // If uncontrolled, use internal state
-      setInternalIsModalOpen(true);
-    }
+    // Always navigate to apartment detail URL when clicking a card
+    router.push(`/news/espaco-administracao/apartamentos/${apartment.id}`);
   };
 
   const handleCloseModal = () => {
