@@ -100,7 +100,7 @@ export const apartments = [
 
     ],
     furniture: "partial",
-    description: "armário nos banheiros, e banco cozinha. Já incluso o condomínio as taxas de água , luz e gás ficará por conta do inquilino."
+    description: "armário nos banheiros, e banco cozinha."
   },
   
 ];
