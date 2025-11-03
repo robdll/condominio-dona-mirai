@@ -75,7 +75,6 @@ export const apartments = [
     furniture: "full",
     description: "Móveis planejados, tudo novo. A unidade fica próximo da portaria. Completo, com wi-fi também"
   },
-
   {
     id: 4,
     apartmentNumber: "102",
@@ -87,6 +86,21 @@ export const apartments = [
     ],
     furniture: "no",
     description: "box e armário nos banheiros, possibilidade de armario na cozinha"
+  },
+  {
+    id: 5,
+    apartmentNumber: "102",
+    blockNumber: "15",
+    rooms: 2,
+    monthlyRent: 1800,
+    floor: 1,
+    images: [
+      "https://uz0ighnnvs6odu2j.public.blob.vercel-storage.com/document_1_1762209926284.jpeg",
+      "https://uz0ighnnvs6odu2j.public.blob.vercel-storage.com/document_2_1762209926292.jpeg",
+
+    ],
+    furniture: "partial",
+    description: "armário nos banheiros, e banco cozinha. Já incluso o condomínio as taxas de água , luz e gás ficará por conta do inquilino."
   },
   
 ];

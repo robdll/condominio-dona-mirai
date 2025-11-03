@@ -1,19 +1,41 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { useRouter } from 'next/navigation';
 import Image from 'next/image';
 import { furnitureOptions } from '../apartments.constant';
 
-const ApartmentCard = ({ apartment }) => {
-  const [isModalOpen, setIsModalOpen] = useState(false);
+const ApartmentCard = ({ apartment, isOpen: controlledIsOpen, onClose: controlledOnClose }) => {
+  const router = useRouter();
+  const [internalIsModalOpen, setInternalIsModalOpen] = useState(false);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
+  // Use controlled state if provided, otherwise use internal state
+  const isModalOpen = controlledIsOpen !== undefined ? controlledIsOpen : internalIsModalOpen;
+  
+  // Sync internal state with controlled prop
+  useEffect(() => {
+    if (controlledIsOpen !== undefined) {
+      setInternalIsModalOpen(controlledIsOpen);
+    }
+  }, [controlledIsOpen]);
+
   const handleCardClick = () => {
-    setIsModalOpen(true);
+    if (controlledIsOpen !== undefined && controlledOnClose) {
+      // If controlled, update URL
+      router.push(`/news/espaco-administracao/apartamentos/${apartment.id}`);
+    } else {
+      // If uncontrolled, use internal state
+      setInternalIsModalOpen(true);
+    }
   };
 
   const handleCloseModal = () => {
-    setIsModalOpen(false);
+    if (controlledOnClose) {
+      controlledOnClose();
+    } else {
+      setInternalIsModalOpen(false);
+    }
   };
 
   const handleBackdropClick = (e) => {
@@ -123,7 +145,7 @@ const ApartmentCard = ({ apartment }) => {
           onClick={handleBackdropClick}
         >
           <div className="bg-white rounded-lg max-w-4xl w-full max-h-[90vh] overflow-hidden">
-            <div className="flex justify-between items-center p-6 border-b">
+            <div className="flex justify-between items-center p-2 md:p-6 border-b">
               <h2 className="text-2xl font-bold text-gray-900">
                 Apartamento {apartment.apartmentNumber} - Bloco {apartment.blockNumber}
               </h2>
@@ -135,7 +157,7 @@ const ApartmentCard = ({ apartment }) => {
               </button>
             </div>
             
-            <div className="p-6 overflow-y-auto max-h-[calc(90vh-120px)]">
+            <div className="pt-2 overflow-y-auto max-h-[calc(90vh-120px)]">
               {apartment.images.length > 0 ? (
                 <div className="mb-6">
                   <div className="relative">
@@ -203,7 +225,7 @@ const ApartmentCard = ({ apartment }) => {
                 </div>
               )}
               
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div className="p-4 grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div className="space-y-4">
                   <div>
                     <h3 className="font-semibold text-gray-900 mb-2">Informações do Apartamento</h3>

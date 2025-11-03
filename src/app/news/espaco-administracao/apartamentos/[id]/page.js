@@ -1,11 +1,15 @@
 'use client';
 
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useEffect } from 'react';
 import Link from 'next/link';
+import { useRouter, useParams } from 'next/navigation';
 import ApartmentCard from '@/components/espacoAdministracao/apartmentCard/ApartmentCard';
 import { apartments } from '@/components/espacoAdministracao/apartments.constant';
 
-export default function ApartamentosPage() {
+export default function ApartmentDetailPage() {
+  const router = useRouter();
+  const params = useParams();
+  const [selectedApartmentId, setSelectedApartmentId] = useState(null);
   
   const [filters, setFilters] = useState({
     furniture: '',
@@ -19,6 +23,20 @@ export default function ApartamentosPage() {
     const blocks = [...new Set(apartments.map(apt => apt.blockNumber))];
     return blocks.sort((a, b) => parseInt(a) - parseInt(b));
   }, []);
+
+  // Handle apartment ID from URL params (for dynamic route)
+  useEffect(() => {
+    if (params?.id) {
+      const apartmentId = parseInt(params.id);
+      const apartment = apartments.find(apt => apt.id === apartmentId);
+      if (apartment) {
+        setSelectedApartmentId(apartmentId);
+      } else {
+        // If apartment not found, redirect to base page
+        router.push('/news/espaco-administracao/apartamentos');
+      }
+    }
+  }, [params?.id, router]);
 
   const filteredApartments = useMemo(() => {
     return apartments.filter(apartment => {
@@ -55,6 +73,7 @@ export default function ApartamentosPage() {
       [filterType]: value
     }));
   };
+  
   return (
     <div className="min-h-screen bg-gradient-radial from-blue-50 via-indigo-50 to-purple-50 dark:from-gray-900 dark:via-blue-900 dark:to-purple-900">
       <div className="container mx-auto px-4 py-8">
@@ -71,8 +90,6 @@ export default function ApartamentosPage() {
               </Link>
             </div>
           </div>
-
-          
 
           {/* Filter Options */}
           <div className="bg-white p-6 rounded-lg shadow-md mb-8">
@@ -145,6 +162,11 @@ export default function ApartamentosPage() {
               <ApartmentCard 
                 key={apartment.id} 
                 apartment={apartment}
+                isOpen={selectedApartmentId === apartment.id}
+                onClose={() => {
+                  setSelectedApartmentId(null);
+                  router.push('/news/espaco-administracao/apartamentos');
+                }}
               />
             ))}
           </div>
@@ -182,3 +204,4 @@ export default function ApartamentosPage() {
     </div>
   );
 }
+
