@@ -59,7 +59,7 @@ export const documentos = [
     id: 8,
     date: "2025-08-13",
     name: "Ata Asembleia",
-    description: "Deliberações manual de obras e implantação rede neutra",
+    description: "Deliberações manual de obras",
     action: "Download",
     url: "https://uz0ighnnvs6odu2j.public.blob.vercel-storage.com/Ata_Asembleia_1761791889736.pdf",
   },
@@ -77,7 +77,7 @@ export const documentos = [
     name: "Ata Asembleia",
     description: "Deliberações kit enxoval e do uso do espaço da lavanderia",
     action: "Download",
-    url: "https://uz0ighnnvs6odu2j.public.blob.vercel-storage.com/Ata_Asembleia_1761792198295.pdf",
+    url: "https://uz0ighnnvs6odu2j.public.blob.vercel-storage.com/Ata_Asembleia_1762211882074.pdf",
   },
   {
     id: 11,
