@@ -143,4 +143,12 @@ export const documentos = [
     action: "Download",
     url: "https://uz0ighnnvs6odu2j.public.blob.vercel-storage.com/Notas_de_Interliga__o_1761933718990.pdf",
   },
+  {
+    id: 19,
+    date: "2025-11-04",
+    name: "Parecer Jurídico sobre Sala Administrativa e Copa para Funcionários",
+    description: "Parecer jurídico sobre a construção de uma Sala Administrativa",
+    action: "Download",
+    url: "https://uz0ighnnvs6odu2j.public.blob.vercel-storage.com/Parecer_Jur_dico_sobre_Sala_Administrativa_1762293523439.pdf",
+  }
 ];

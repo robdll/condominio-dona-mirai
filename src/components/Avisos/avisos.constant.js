@@ -135,6 +135,28 @@ Atenciosamente,
 A Administração`,
     category: "Obras",
   },
+  {
+    id: 8,
+    title: "Parecer Jurídico sobre Sala Administrativa",
+    date: "2025-11-04",
+    description: `📢 INFORME AOS CONDÔMINOS
+
+Prezados condôminos,
+
+Informamos que foi emitido parecer jurídico sobre a construção de uma Copa para Funcionários e uma Sala Administrativa com Depósito para materiais de limpeza.
+
+De acordo com o parecer:
+
+A Copa para Funcionários é considerada obra necessária, pois é uma exigência legal trabalhista (NR-24 do Ministério do Trabalho), podendo ser aprovada por maioria simples dos presentes em assembleia.
+
+A Sala Administrativa com Depósito é classificada como obra útil, e deve ser aprovada por maioria qualificada, conforme previsto no Código Civil e na Convenção do Condomínio.
+
+Ambas as obras foram consideradas juridicamente viáveis e recomendáveis, visando melhores condições de trabalho aos colaboradores e maior eficiência na gestão condominial.
+
+Atenciosamente,
+A Administração`,
+    category: "Outros",
+  },
 ];
 
 export const avisoCategories = [
