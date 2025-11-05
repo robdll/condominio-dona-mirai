@@ -102,7 +102,6 @@ export const apartments = [
     furniture: "partial",
     description: "armário nos banheiros, e banco cozinha."
   },
-
   {
     id: 6,
     apartmentNumber: "3",
