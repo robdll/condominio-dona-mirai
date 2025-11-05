@@ -102,6 +102,21 @@ export const apartments = [
     furniture: "partial",
     description: "armário nos banheiros, e banco cozinha."
   },
+
+  {
+    id: 6,
+    apartmentNumber: "3",
+    blockNumber: "17",
+    rooms: 2,
+    monthlyRent: 1200,
+    floor: 0,
+    images: [
+      "https://uz0ighnnvs6odu2j.public.blob.vercel-storage.com/document_1_1762367714322.jpeg",
+      "https://uz0ighnnvs6odu2j.public.blob.vercel-storage.com/document_2_1762367714314.jpeg",
+    ],
+    furniture: "no",
+    description: "Muro do fundo em construçao. Banheiro com box e todos os acessórios. Aceita aluguel por meno de 1 ano se necessário."
+  },
   
 ];
 
