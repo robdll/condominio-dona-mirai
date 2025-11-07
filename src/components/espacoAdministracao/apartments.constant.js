@@ -116,6 +116,18 @@ export const apartments = [
     furniture: "no",
     description: "Muro do fundo em construçao. Banheiro com box e todos os acessórios. Aceita aluguel por meno de 1 ano se necessário."
   },
+  {
+    id: 7,
+    apartmentNumber: "3",
+    blockNumber: "12",
+    rooms: 3,
+    monthlyRent: 1800,
+    floor: 0,
+    images: [
+    ],
+    furniture: "no",
+    description: ""
+  },
   
 ];
 
