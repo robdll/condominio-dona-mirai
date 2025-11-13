@@ -128,6 +128,18 @@ export const apartments = [
     furniture: "no",
     description: ""
   },
+  {
+    id: 8,
+    apartmentNumber: "1",
+    blockNumber: "25",
+    rooms: 3,
+    monthlyRent: 1000,
+    floor: 0,
+    images: [
+    ],
+    furniture: "no",
+    description: ""
+  },
   
 ];
 
