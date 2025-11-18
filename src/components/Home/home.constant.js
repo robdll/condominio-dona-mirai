@@ -12,7 +12,7 @@ export const slides = [
     title: "Alluga para o Mirai!",
     description: 'Alugue seu imóvel para o condomínio abrigar administração e colaboradores, liberando a Lavanderia e a Sala de Poker para os moradores.',
     buttonText: "Ler Detalhes",
-    buttonLink: '/alugue-para-o-mirai',
+    buttonLink: '/news/espaco-administracao/apartamentos',
     icon: 'home'
   }
 ];
