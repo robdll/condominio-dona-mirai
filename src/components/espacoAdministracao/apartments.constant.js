@@ -110,7 +110,7 @@ export const apartments = [
     monthlyRent: 1600,
     floor: 1,
     images: [
-      "https://uz0ighnnvs6odu2j.public.blob.vercel-storage.com/document_1_1764788347727.png",
+      "https://uz0ighnnvs6odu2j.public.blob.vercel-storage.com/document_1_1764788556744.jpeg",
     ],
     furniture: "partial",
     description: "Tem armário na cozinha e gabinete no banheiro."
