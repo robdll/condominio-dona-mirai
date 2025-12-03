@@ -139,6 +139,18 @@ export const apartments = [
     furniture: "no",
     description: ""
   },
+  {
+    id: 9,
+    apartmentNumber: "5",
+    blockNumber: "8",
+    rooms: 3,
+    monthlyRent: 2200,
+    floor: 0,
+    images: [
+    ],
+    furniture: "sim",
+    description: "armário de cozinha completo e cook top quintal coberto e cerâmica"
+  },
   
 ];
 
