@@ -395,7 +395,7 @@ export default function Participantes() {
                   Consulte novamente as regras e condições da campanha de incentivo à participação.
                 </p>
                   <Link 
-                    href="/incentivo-votacao/regras"
+                    href="/news/arquivo/incentivo-votacao/regras"
                     className="inline-flex items-center px-6 py-3 bg-gradient-to-r from-gray-600 to-gray-700 hover:from-gray-700 hover:to-gray-800 text-white rounded-lg transition-all duration-200 font-medium shadow-lg hover:shadow-xl"
                   >
                     <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">

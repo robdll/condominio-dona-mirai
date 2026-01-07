@@ -478,7 +478,7 @@ export default function Sorteio() {
                   Consulte a lista completa de participantes com todas as informações.
                 </p>
                 <Link 
-                  href="/incentivo-votacao/participantes"
+                  href="/news/arquivo/incentivo-votacao/participantes"
                   className="inline-flex items-center px-6 py-3 bg-brandBtn hover:bg-brandBtnHover text-white rounded-lg transition-all duration-200 font-medium shadow-lg hover:shadow-xl"
                 >
                   <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">

@@ -291,7 +291,7 @@ export default function Regras() {
                     Veja a lista atualizada de todos os condôminos que participaram da campanha e acompanhe o ranking de indicações.
                   </p>
                   <Link 
-                    href="/incentivo-votacao/participantes"
+                    href="/news/arquivo/incentivo-votacao/participantes"
                     className="inline-flex items-center px-6 py-3 bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white rounded-lg transition-all duration-200 font-medium shadow-lg hover:shadow-xl"
                   >
                     <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -311,7 +311,7 @@ export default function Regras() {
                     Descubra quem são os vencedores! Escolha entre sorteio por indicações ou sorteio aleatório.
                   </p>
                   <Link 
-                    href="/incentivo-votacao/sorteio"
+                    href="/news/arquivo/incentivo-votacao/sorteio"
                     className="inline-flex items-center px-6 py-3 bg-gradient-to-r from-purple-600 to-purple-700 hover:from-purple-700 hover:to-purple-800 text-white rounded-lg transition-all duration-200 font-medium shadow-lg hover:shadow-xl"
                   >
                     <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">

@@ -7,6 +7,7 @@ import Image from 'next/image';
 export default function Navbar() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isNewsDropdownOpen, setIsNewsDropdownOpen] = useState(false);
+  const [isArquivoDropdownOpen, setIsArquivoDropdownOpen] = useState(false);
   const [isSorteioDropdownOpen, setIsSorteioDropdownOpen] = useState(false);
   const [isAdminDropdownOpen, setIsAdminDropdownOpen] = useState(false);
   const newsCloseTimeoutRef = useRef(null);
@@ -25,6 +26,10 @@ export default function Navbar() {
     } else {
       if (newsCloseTimeoutRef.current) clearTimeout(newsCloseTimeoutRef.current);
     }
+  };
+
+  const toggleArquivoDropdown = () => {
+    setIsArquivoDropdownOpen(!isArquivoDropdownOpen);
   };
 
   const toggleSorteioDropdown = () => {
@@ -97,44 +102,71 @@ export default function Navbar() {
               
               {isNewsDropdownOpen && (
                 <div className="absolute top-full left-[-120px] mt-2 w-64 bg-white dark:bg-gray-800 rounded-lg shadow-lg border border-gray-200 dark:border-gray-700 py-2 z-50">
-                  {/* Sorteio de Votação Accordion */}
+                  {/* Arquivo Accordion */}
                   <div className="border-b border-gray-200 dark:border-gray-700 last:border-b-0">
                     <button
-                      onClick={toggleSorteioDropdown}
+                      onClick={toggleArquivoDropdown}
                       className="w-full text-left px-4 py-2 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 flex items-center justify-between cursor-pointer transition-colors"
                     >
-                      <span className="font-medium">Incentivo à Votação</span>
-                      <svg className={`w-4 h-4 transition-transform duration-200 ${isSorteioDropdownOpen ? 'rotate-90' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <span className="font-medium">Arquivo</span>
+                      <svg className={`w-4 h-4 transition-transform duration-200 ${isArquivoDropdownOpen ? 'rotate-90' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                       </svg>
                     </button>
                     
-                    {/* Accordion Content */}
+                    {/* Arquivo Accordion Content */}
                     <div className={`overflow-hidden transition-all duration-300 ease-in-out ${
-                      isSorteioDropdownOpen ? 'max-h-48 opacity-100' : 'max-h-0 opacity-0'
+                      isArquivoDropdownOpen ? 'max-h-64 opacity-100' : 'max-h-0 opacity-0'
                     }`}>
-                      <div className="px-4 pb-2 space-y-1">
-                        <Link 
-                          href="/incentivo-votacao/regras" 
-                          className="block px-3 py-2 text-sm text-gray-600 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-700 hover:text-gray-900 dark:hover:text-gray-200 rounded-md cursor-pointer transition-colors"
-                          onClick={() => setIsNewsDropdownOpen(false)}
-                        >
-                          Regras
-                        </Link>
-                        <Link 
-                          href="/incentivo-votacao/participantes" 
-                          className="block px-3 py-2 text-sm text-gray-600 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-700 hover:text-gray-900 dark:hover:text-gray-200 rounded-md cursor-pointer transition-colors"
-                          onClick={() => setIsNewsDropdownOpen(false)}
-                        >
-                          Participantes
-                        </Link>
-                        <Link 
-                          href="/incentivo-votacao/sorteio" 
-                          className="block px-3 py-2 text-sm text-gray-600 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-700 hover:text-gray-900 dark:hover:text-gray-200 rounded-md cursor-pointer transition-colors"
-                          onClick={() => setIsNewsDropdownOpen(false)}
-                        >
-                          Sorteio
-                        </Link>
+                      <div className="px-4 pb-2">
+                        {/* Incentivo à Votação Nested Accordion */}
+                        <div className="border-b border-gray-200 dark:border-gray-700 last:border-b-0">
+                          <button
+                            onClick={toggleSorteioDropdown}
+                            className="w-full text-left px-3 py-2 text-sm text-gray-600 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-700 flex items-center justify-between cursor-pointer transition-colors rounded-md"
+                          >
+                            <span className="font-medium">Incentivo à Votação</span>
+                            <svg className={`w-4 h-4 transition-transform duration-200 ${isSorteioDropdownOpen ? 'rotate-90' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                            </svg>
+                          </button>
+                          
+                          {/* Incentivo à Votação Accordion Content */}
+                          <div className={`overflow-hidden transition-all duration-300 ease-in-out ${
+                            isSorteioDropdownOpen ? 'max-h-48 opacity-100' : 'max-h-0 opacity-0'
+                          }`}>
+                            <div className="px-3 pb-2 space-y-1">
+                              <Link 
+                                href="/news/arquivo/incentivo-votacao/regras" 
+                                className="block px-3 py-2 text-sm text-gray-600 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-700 hover:text-gray-900 dark:hover:text-gray-200 rounded-md cursor-pointer transition-colors"
+                                onClick={() => setIsNewsDropdownOpen(false)}
+                              >
+                                Regras
+                              </Link>
+                              <Link 
+                                href="/news/arquivo/incentivo-votacao/participantes" 
+                                className="block px-3 py-2 text-sm text-gray-600 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-700 hover:text-gray-900 dark:hover:text-gray-200 rounded-md cursor-pointer transition-colors"
+                                onClick={() => setIsNewsDropdownOpen(false)}
+                              >
+                                Participantes
+                              </Link>
+                              <Link 
+                                href="/news/arquivo/incentivo-votacao/sorteio" 
+                                className="block px-3 py-2 text-sm text-gray-600 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-700 hover:text-gray-900 dark:hover:text-gray-200 rounded-md cursor-pointer transition-colors"
+                                onClick={() => setIsNewsDropdownOpen(false)}
+                              >
+                                Sorteio
+                              </Link>
+                              <Link 
+                                href="/news/arquivo/incentivo-votacao/vencedores" 
+                                className="block px-3 py-2 text-sm text-gray-600 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-700 hover:text-gray-900 dark:hover:text-gray-200 rounded-md cursor-pointer transition-colors"
+                                onClick={() => setIsNewsDropdownOpen(false)}
+                              >
+                                Vencedores
+                              </Link>
+                            </div>
+                          </div>
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -220,44 +252,71 @@ export default function Navbar() {
               <div className="px-4 py-2">
                 <div className="text-sm font-medium text-gray-500 dark:text-gray-400 mb-2">News</div>
                 <div className="ml-4 space-y-2">
-                  {/* Mobile Sorteio Accordion */}
+                  {/* Mobile Arquivo Accordion */}
                   <div className="border-b border-gray-200 dark:border-gray-700 last:border-b-0">
                     <button
-                      onClick={toggleSorteioDropdown}
+                      onClick={toggleArquivoDropdown}
                       className="w-full text-left py-2 text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 flex items-center justify-between cursor-pointer transition-colors"
                     >
-                      <span>Incentivo à Votação</span>
-                      <svg className={`w-4 h-4 transition-transform duration-200 ${isSorteioDropdownOpen ? 'rotate-90' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <span>Arquivo</span>
+                      <svg className={`w-4 h-4 transition-transform duration-200 ${isArquivoDropdownOpen ? 'rotate-90' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                       </svg>
                     </button>
                     
-                    {/* Mobile Accordion Content */}
+                    {/* Mobile Arquivo Accordion Content */}
                     <div className={`overflow-hidden transition-all duration-300 ease-in-out ${
-                      isSorteioDropdownOpen ? 'max-h-48 opacity-100' : 'max-h-0 opacity-0'
+                      isArquivoDropdownOpen ? 'max-h-64 opacity-100' : 'max-h-0 opacity-0'
                     }`}>
-                      <div className="py-2 space-y-1">
-                        <Link 
-                          href="/incentivo-votacao/regras" 
-                          className="block px-3 py-2 text-sm text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 hover:text-gray-900 dark:hover:text-gray-200 rounded-lg cursor-pointer transition-colors"
-                          onClick={() => setIsMobileMenuOpen(false)}
-                        >
-                          Regras
-                        </Link>
-                        <Link 
-                          href="/incentivo-votacao/participantes" 
-                          className="block px-3 py-2 text-sm text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 hover:text-gray-900 dark:hover:text-gray-200 rounded-lg cursor-pointer transition-colors"
-                          onClick={() => setIsMobileMenuOpen(false)}
-                        >
-                          Participantes
-                        </Link>
-                        <Link 
-                          href="/incentivo-votacao/sorteio" 
-                          className="block px-3 py-2 text-sm text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 hover:text-gray-900 dark:hover:text-gray-200 rounded-lg cursor-pointer transition-colors"
-                          onClick={() => setIsMobileMenuOpen(false)}
-                        >
-                          Sorteio
-                        </Link>
+                      <div className="py-2">
+                        {/* Mobile Incentivo à Votação Nested Accordion */}
+                        <div className="border-b border-gray-200 dark:border-gray-700 last:border-b-0">
+                          <button
+                            onClick={toggleSorteioDropdown}
+                            className="w-full text-left py-2 text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 flex items-center justify-between cursor-pointer transition-colors"
+                          >
+                            <span>Incentivo à Votação</span>
+                            <svg className={`w-4 h-4 transition-transform duration-200 ${isSorteioDropdownOpen ? 'rotate-90' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                            </svg>
+                          </button>
+                          
+                          {/* Mobile Incentivo à Votação Accordion Content */}
+                          <div className={`overflow-hidden transition-all duration-300 ease-in-out ${
+                            isSorteioDropdownOpen ? 'max-h-48 opacity-100' : 'max-h-0 opacity-0'
+                          }`}>
+                            <div className="py-2 space-y-1">
+                              <Link 
+                                href="/news/arquivo/incentivo-votacao/regras" 
+                                className="block px-3 py-2 text-sm text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 hover:text-gray-900 dark:hover:text-gray-200 rounded-lg cursor-pointer transition-colors"
+                                onClick={() => setIsMobileMenuOpen(false)}
+                              >
+                                Regras
+                              </Link>
+                              <Link 
+                                href="/news/arquivo/incentivo-votacao/participantes" 
+                                className="block px-3 py-2 text-sm text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 hover:text-gray-900 dark:hover:text-gray-200 rounded-lg cursor-pointer transition-colors"
+                                onClick={() => setIsMobileMenuOpen(false)}
+                              >
+                                Participantes
+                              </Link>
+                              <Link 
+                                href="/news/arquivo/incentivo-votacao/sorteio" 
+                                className="block px-3 py-2 text-sm text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 hover:text-gray-900 dark:hover:text-gray-200 rounded-lg cursor-pointer transition-colors"
+                                onClick={() => setIsMobileMenuOpen(false)}
+                              >
+                                Sorteio
+                              </Link>
+                              <Link 
+                                href="/news/arquivo/incentivo-votacao/vencedores" 
+                                className="block px-3 py-2 text-sm text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 hover:text-gray-900 dark:hover:text-gray-200 rounded-lg cursor-pointer transition-colors"
+                                onClick={() => setIsMobileMenuOpen(false)}
+                              >
+                                Vencedores
+                              </Link>
+                            </div>
+                          </div>
+                        </div>
                       </div>
                     </div>
                   </div>
