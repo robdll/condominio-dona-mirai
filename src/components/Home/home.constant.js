@@ -3,9 +3,9 @@ import { HomeIcon } from '@heroicons/react/24/outline';
 export const slides = [
   {
     title: "Incentivo à Votação",
-    description: "Participe da nossa campanha especial e concorra a prêmios de até R$ 750,00! A votação é sobre o deslocamento da porta da varanda e sua participação é fundamental para o futuro do nosso condomínio.",
-    buttonText: "Ver Regulamento",
-    buttonLink: "/incentivo-votacao/regras",
+    description: "A campanha de incentivo à votação foi concluída! Os vencedores foram sorteados e podem ser consultados abaixo. Parabéns a todos os participantes!",
+    buttonText: "Ver Vencedores",
+    buttonLink: "/news/arquivo/incentivo-votacao/vencedores",
     icon: 'banknotes'
   },
   {
