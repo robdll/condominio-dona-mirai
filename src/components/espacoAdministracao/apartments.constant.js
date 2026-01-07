@@ -151,6 +151,25 @@ export const apartments = [
     furniture: "sim",
     description: "armário de cozinha completo e cook top quintal coberto e cerâmica"
   },
+  {
+    id: 10,
+    apartmentNumber: "5",
+    blockNumber: "7",
+    rooms: 3,
+    monthlyRent: 2500,
+    floor: 0,
+    images: [
+      "https://uz0ighnnvs6odu2j.public.blob.vercel-storage.com/document_2_1767784128686.jpeg",
+      "https://uz0ighnnvs6odu2j.public.blob.vercel-storage.com/document_1_1767784128677.jpeg",
+      "https://uz0ighnnvs6odu2j.public.blob.vercel-storage.com/document_3_1767784128684.jpeg",
+      "https://uz0ighnnvs6odu2j.public.blob.vercel-storage.com/document_4_1767784128668.jpeg",
+      "https://uz0ighnnvs6odu2j.public.blob.vercel-storage.com/document_5_1767784128675.jpeg",
+      "https://uz0ighnnvs6odu2j.public.blob.vercel-storage.com/document_6_1767784128680.jpeg",
+      "https://uz0ighnnvs6odu2j.public.blob.vercel-storage.com/document_7_1767784130798.jpeg",
+    ],
+    furniture: "partial",
+    description: "condominio incluido no valor do aluguel"
+  },
   
 ];
 
